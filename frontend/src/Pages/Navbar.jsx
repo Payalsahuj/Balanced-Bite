@@ -13,11 +13,10 @@ import {
     PopoverTrigger,
     PopoverContent,
     useColorModeValue,
-    useBreakpointValue,
     useDisclosure,
     Image,
   } from '@chakra-ui/react';
-  import logo from "../Image/Balanced.png"
+  import logo from "../Image/Balanced-removebg-preview.png"
   import {
     HamburgerIcon,
     CloseIcon,
@@ -33,7 +32,7 @@ import {
         <Flex
         
        
-          bg={useColorModeValue('white', 'gray.800')}
+          bg={useColorModeValue('#ffffffc5', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
           minH={'60px'}
           py={{ base: 2 }}
@@ -73,7 +72,7 @@ import {
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              href={'#'}>
+              href={'#'} color={'black'}> 
               Sign In
             </Button>
             <Button
@@ -82,10 +81,10 @@ import {
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
-              bg={'pink.400'}
+              bg={'#1A237E'}
               href={'#'}
               _hover={{
-                bg: 'pink.300',
+                bg: '#1a227ed6',
               }}>
               Sign Up
             </Button>

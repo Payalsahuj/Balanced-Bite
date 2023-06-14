@@ -14,7 +14,7 @@ import {
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 import AppStoreBadge from '../Image/app-store-logo.png';
-import PlayStoreBadge from '../Image/google-play-store-8-1-73-apk.png';
+import PlayStoreBadge from '../Image/rr.png';
 
 const ListHeader = ({ children }) => {
   return (
@@ -55,8 +55,8 @@ export default function Footer() {
   return (
     <Box
     
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}>
+      bg={useColorModeValue('#0f346c', 'gray.900')}
+      color={useColorModeValue('#ffffff', 'gray.200')}>
       <Container as={Stack} maxW={'7xl'} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>
           <Stack align={'flex-start'}>
