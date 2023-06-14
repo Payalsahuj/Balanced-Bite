@@ -4,7 +4,7 @@ import { AllRoutes } from './Routes/Allroutes';
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <AllRoutes/>
     </div>
   );
