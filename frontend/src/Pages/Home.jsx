@@ -1,5 +1,5 @@
 import { Box, Image, Center, Heading, Text, Grid, GridItem, Button } from "@chakra-ui/react"
-
+import cap from "../Image/3-removebg-preview.png"
 import chef1 from "../Image/chef-experience 1.webp"
 import chef2 from "../Image/chef-experience 2.webp"
 import chef3 from "../Image/chef-experience 3.webp"
@@ -60,8 +60,9 @@ function Home() {
     ]
     return <Box  style={{fontFamily:"Chronicle Deck" ,position:'relative'}} >
         <Box   style={{ position: 'sticky', top: 0, zIndex: 1, opacity:'.9'  }}  >
-            <video width={'100%'} opacity='.9'  style={{objectFit:'cover'}} src={video} autoPlay muted loop></video>
-            <Box zIndex={3} top={'25%'} left={'5%'} position={'absolute'}  color={'#84cb47'}  height={'200px'} textAlign={'left'} >
+            <video width={'100%'} opacity='.9'  style={{objectFit:'cover',filter: 'brightness(70%)'}} src={video} autoPlay muted loop></video>
+            <Box zIndex={3} top={'23%'} left={'5%'} position={'absolute'}  color={'white'}  height={'200px'} textAlign={'left'} >
+            <Image src={cap} width={'170px'} alt="" />
             <Heading as='h3' size='xl' fontFamily= "Chronicle Deck" >
                 The Balanced Bite
                 </Heading>
