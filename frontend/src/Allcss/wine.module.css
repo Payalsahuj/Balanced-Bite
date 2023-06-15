@@ -1,0 +1,53 @@
+.top {
+   color: aqua;
+   padding: 20px;
+   background-color: #f1f1f1;
+}
+
+img {
+   width: 100%;
+}
+button{
+  background: #002684;
+  color: white;
+  border-radius: 35px;
+  padding: 15px 60px;
+  border: none;
+}
+
+.overlay {
+   position: absolute;
+   top: 50%;
+   left: 70%;
+   text-align: center;
+   transform: translate(-50%, -50%);
+}
+
+.fleximg{
+  align-items: center;
+  width: 50%;
+  margin: auto;
+}
+
+.fleximg img{
+  width: 40%;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
+   gap: 100px
+}
+
+.monthly{
+ 
+    position: absolute;
+    
+    border-radius: 20px;
+    left: 70%;
+    text-align: left;
+    transform: translate(-40%, -109%);
+    background-color: rgb(236, 240, 241);
+    padding: 10px 40px;
+ 
+}

@@ -4,6 +4,12 @@ import { Registration } from "../Pages/Registration"
 import { Login } from "../Pages/Login"
 import { Adminlogin } from "../Pages/AdminLogin"
 
+import Wine from "../Pages/Wine"
+
+import Products from "../Pages/Products"
+import SingleProduct from "../Pages/SingleProduct"
+
+
 export const AllRoutes=()=>{
     return (
         <div>
@@ -12,6 +18,9 @@ export const AllRoutes=()=>{
                 <Route path="/register" element={<Registration/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/adminlogin' element={<Adminlogin/>}/>
+                <Route path="/wine" element={<Wine/>}/>
+                <Route path="/products" element={<Products/>}/>
+                <Route path="/products/:id" element={<SingleProduct/>}/>
             </Routes>
         </div>
     )
