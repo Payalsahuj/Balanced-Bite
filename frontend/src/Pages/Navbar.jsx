@@ -23,6 +23,7 @@ import {
     ChevronDownIcon,
     ChevronRightIcon,
   } from '@chakra-ui/icons';
+import { Link as Reactlink } from 'react-router-dom';
   
   export default function Navbar() {
     const { isOpen, onToggle } = useDisclosure();
@@ -55,7 +56,8 @@ import {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Image src={logo} width={{base: '140px', md:'120px'}}  alt='Logo' />
+            <Reactlink to='/'><Image src={logo} width={{base: '140px', md:'120px'}}  alt='Logo' /></Reactlink>
+          
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
@@ -75,6 +77,7 @@ import {
               href={'#'} color={'black'}> 
               Sign In
             </Button>
+            <Reactlink to='/register'>
             <Button
               as={'a'}
               display={{ base: 'none', md: 'inline-flex' }}
@@ -82,12 +85,13 @@ import {
               fontWeight={600}
               color={'white'}
               bg={'#1A237E'}
-              href={'#'}
               _hover={{
                 bg: '#1a227ed6',
-              }}>
-              Sign Up
+              }} >
+               Sign Up
+              
             </Button>
+            </Reactlink>
           </Stack>
         </Flex>
   
@@ -182,10 +186,11 @@ import {
   const MobileNav = () => {
     return (
       <Stack
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('#ffffffc5', 'gray.800')}
         p={4}
+        
         display={{ md: 'none' }}>
-        {NAV_ITEMS.map((navItem) => (
+        {NAV_ITEMSMob.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}
       </Stack>
@@ -198,6 +203,7 @@ import {
     return (
       <Stack spacing={4} onClick={children && onToggle}>
         <Flex
+        
           py={2}
           as={Link}
           href={href ?? '#'}
@@ -208,6 +214,7 @@ import {
           }}>
           <Text
             fontWeight={600}
+            fontFamily='Chronicle Deck'
             color={useColorModeValue('gray.600', 'gray.200')}>
             {label}
           </Text>
@@ -265,4 +272,34 @@ import {
         label: 'MARKET',
         href: '#',
       },
+  ];
+
+
+
+  
+  const NAV_ITEMSMob = [
+    {
+      label: 'ON THE MENU',
+      href:"#"
+    },
+    {
+      label: 'PLANS',
+      href:"#"
+    },
+    {
+      label: 'WINE',
+      href: '#',
+    },
+    {
+      label: 'GIFTS',
+      href: '#',
+    },
+    {
+        label: 'MARKET',
+        href: '#',
+      },
+      {
+        label: 'ADMIN',
+        href: '#',
+      }
   ];
