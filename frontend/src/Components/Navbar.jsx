@@ -31,8 +31,6 @@ import { Link as Reactlink } from 'react-router-dom';
     return (
       <Box position='fixed' top='0%'  zIndex={3} width={'100%'}>
         <Flex
-        
-       
           bg={useColorModeValue('#ffffffc5', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
           minH={'60px'}
@@ -69,14 +67,15 @@ import { Link as Reactlink } from 'react-router-dom';
             justify={'flex-end'}
             direction={'row'}
             spacing={6}>
+              <Reactlink to='/login'>
             <Button
               as={'a'}
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              href={'#'} color={'black'}> 
+               color={'black'}> 
               Sign In
-            </Button>
+            </Button></Reactlink>
             <Reactlink to='/register'>
             <Button
               as={'a'}
