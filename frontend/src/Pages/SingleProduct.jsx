@@ -37,6 +37,9 @@ function SingleProduct() {
     <Box width={["90%", "90%", "90%", "85%"]} margin={"auto"}>
       <br />
       <br />
+      <br />
+      <br />
+      <br />
       <SimpleGrid columns={[1, 1, 1, 2]} spacing={10}>
         <Box>
           <Image width={"100%"} height={"100%"} src={data.image} />

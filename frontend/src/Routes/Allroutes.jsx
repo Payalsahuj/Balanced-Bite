@@ -5,6 +5,7 @@ import Wine from "../Pages/Wine"
 
 import Products from "../Pages/Products"
 import SingleProduct from "../Pages/SingleProduct"
+import Pricing from "../Pages/Pricing"
 
 
 export const AllRoutes=()=>{
@@ -18,6 +19,7 @@ export const AllRoutes=()=>{
 
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
+                <Route path="/pricing" element={<Pricing/>}/>
 
             </Routes>
         </div>
