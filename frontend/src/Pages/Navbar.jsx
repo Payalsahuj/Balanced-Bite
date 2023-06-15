@@ -29,7 +29,7 @@ import { Link as Reactlink } from 'react-router-dom';
     const { isOpen, onToggle } = useDisclosure();
   
     return (
-      <Box position='fixed'  zIndex={3} width={'100%'}>
+      <Box position='fixed' top='0%'  zIndex={3} width={'100%'}>
         <Flex
         
        
@@ -113,9 +113,10 @@ import { Link as Reactlink } from 'react-router-dom';
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
+                <Reactlink to={navItem.href}>
                 <Link
                   p={2}
-                  href={navItem.href ?? '#'}
+                 
                   fontSize={'sm'}
                   fontWeight={500}
                   color={linkColor}
@@ -125,6 +126,7 @@ import { Link as Reactlink } from 'react-router-dom';
                   }} >
                   {navItem.label}
                 </Link>
+                </Reactlink>
               </PopoverTrigger>
   
               {navItem.children && (
@@ -151,8 +153,9 @@ import { Link as Reactlink } from 'react-router-dom';
   
   const DesktopSubNav = ({ label, href, subLabel }) => {
     return (
+      <Reactlink to={href}>
       <Link
-        href={href}
+       
         role={'group'}
         display={'block'}
         p={2}
@@ -180,6 +183,7 @@ import { Link as Reactlink } from 'react-router-dom';
           </Flex>
         </Stack>
       </Link>
+      </Reactlink>
     );
   };
   
@@ -206,18 +210,20 @@ import { Link as Reactlink } from 'react-router-dom';
         
           py={2}
           as={Link}
-          href={href ?? '#'}
+          
           justify={'space-between'}
           align={'center'}
           _hover={{
             textDecoration: 'none',
           }}>
+            <Reactlink to={href}>
           <Text
             fontWeight={600}
             fontFamily='Chronicle Deck'
             color={useColorModeValue('gray.600', 'gray.200')}>
             {label}
           </Text>
+          </Reactlink>
           {children && (
             <Icon
               as={ChevronDownIcon}
@@ -254,7 +260,7 @@ import { Link as Reactlink } from 'react-router-dom';
   const NAV_ITEMS = [
     {
       label: 'ON THE MENU',
-      href:"#"
+      href:"/products"
     },
     {
       label: 'PLANS',
@@ -262,7 +268,7 @@ import { Link as Reactlink } from 'react-router-dom';
     },
     {
       label: 'WINE',
-      href: '#',
+      href: '/wine',
     },
     {
       label: 'GIFTS',
@@ -280,7 +286,7 @@ import { Link as Reactlink } from 'react-router-dom';
   const NAV_ITEMSMob = [
     {
       label: 'ON THE MENU',
-      href:"#"
+      href:"/products"
     },
     {
       label: 'PLANS',
@@ -288,7 +294,7 @@ import { Link as Reactlink } from 'react-router-dom';
     },
     {
       label: 'WINE',
-      href: '#',
+      href: '/wine',
     },
     {
       label: 'GIFTS',
