@@ -1,4 +1,4 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, FormErrorMessage, FormHelperText, Image, useToast } from "@chakra-ui/react";
 import cap from "../Image/cap black.png"
 import AOS from "aos"
 import "aos/dist/aos.css"
@@ -20,13 +20,104 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Link as Reactlink } from 'react-router-dom';
+import {  Link as Reactlink, useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
+
+import { useDispatch } from "react-redux";
+import { login } from "../Redux/RegisterReducer/action";
+import { POST_LOGIN_SUCCESS, POST_REGISTER_ERROR } from "../Redux/RegisterReducer/actionTypes";
+
+
+
+
 export function Login(){
-    const [showPassword, setShowPassword] = useState(false);
+    const [email, setemail] = useState("")
+    const [isErroremail, setisErroremail] = useState(false)
+
+    const [pass, setpass] = useState("")
+    const [isErrorpass, setisErrorpass] = useState(false)
+    const toast = useToast()
+
+    const dispatch = useDispatch()
+   const navigate=useNavigate()
     useEffect(()=>{
         AOS.init({ duration: 1000 });
     },[])
+
+
+
+    function handleclick() {
+
+       
+        if (email === "") {
+            setisErroremail(true)
+        }
+        else if (pass === "") {
+            setisErrorpass(true)
+        }
+        
+        else {
+
+            let obj = {
+                email: email,
+                pass: pass
+            }
+
+            dispatch(login(obj)).then((res) => {
+                console.log(res)
+                setisErroremail(false)
+                setisErrorpass(false)
+                dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data })
+                toast({
+                    position: 'top',
+                    title: res.data.msg,
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+
+                })
+                localStorage.setItem("token",res.data.token)
+                setemail("")
+                setpass("")
+                navigate("/")
+                
+                
+            })
+                .catch((err) => {
+                    console.log(err.response.data.error)
+                    if (err.response.data.error === "Invalid Password !!") {
+                        setisErrorpass(true)
+                        setisErroremail(false)
+                        toast({
+                            position: 'top-right',
+                            title: err.response.data.error,
+                            status: 'warning',
+                            duration: 9000,
+                            isClosable: true,
+
+                        })
+                    }
+                    else if (err.response.data.error === "Invalid email !!") {
+                        setisErrorpass(false)
+                        setisErroremail(true)
+
+                        toast({
+                            position: 'top-right',
+                            title: err.response.data.error,
+                            status: 'warning',
+                            duration: 9000,
+                            isClosable: true,
+
+                        })
+
+                    }
+                    dispatch({ type: POST_REGISTER_ERROR })
+                })
+
+        }
+    }
+
+
     return(<Box >
         <Navbar/>
         <Box
@@ -57,15 +148,29 @@ export function Login(){
                                    
                                     <Flex width={'100%'}  direction={'column'} justifyContent={'space-between'} >
                                         <Box width={{base:'100%',md:'75%'}} margin={'auto'}>
-                                            <FormControl id="email" isRequired>
+                                        <FormControl id="email" isInvalid={isErroremail} isRequired>
                                                 <FormLabel>Email</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="email" />
+                                                <Input backgroundColor={'#c1d6f3'} type="email" value={email} onChange={(e) => setemail(e.target.value)} />
+                                                {!isErroremail ? (
+                                                    <FormHelperText>
+                                                        Enter the email you'd like to receive payment details.
+                                                    </FormHelperText>
+                                                ) : (
+                                                    <FormErrorMessage>Email is required.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
                                         <Box width={{base:'100%',md:'65%'}} pt={'20px'}  margin={'auto'}>
-                                            <FormControl id="password" isRequired>
+                                        <FormControl id="password" isInvalid={isErrorpass} isRequired>
                                                 <FormLabel>Password</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="password" />
+                                                <Input backgroundColor={'#c1d6f3'} type="password" value={pass} onChange={(e) => setpass(e.target.value)} />
+                                                {!isErrorpass ? (
+                                                    <FormHelperText>
+                                                        Password should contain atleast one number, one special character, and of atleast 8 characters long.
+                                                    </FormHelperText>
+                                                ) : (
+                                                    <FormErrorMessage>Password should contain atleast one number, one special character, and of atleast 8 characters long.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
                                         
@@ -75,7 +180,7 @@ export function Login(){
                                         <Button
                                         width={{base:'100%',md:'50%'}}
                                         margin={'auto'}
-                                            loadingText="Submitting"
+                                           onClick={handleclick}
                                             size="lg"
                                             bg={'blue.400'}
                                             color={'white'}

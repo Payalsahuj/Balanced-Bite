@@ -1,4 +1,6 @@
-import { Box, Image, Select } from "@chakra-ui/react";
+
+
+import { Box, FormErrorMessage, FormHelperText, Image, Select, useToast } from "@chakra-ui/react";
 import cap from "../Image/cap black.png"
 import AOS from "aos"
 import "aos/dist/aos.css"
@@ -14,20 +16,105 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import { Link as Reactlink } from 'react-router-dom';
+import { Link as Reactlink, useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
+import { useDispatch } from "react-redux"
+import { register } from "../Redux/RegisterReducer/action";
+import { POST_REGISTER_ERROR, POST_REGISTER_SUCCESS } from "../Redux/RegisterReducer/actionTypes";
 
 
 export function Registration() {
-    const [name,setname]=useState("")
-    const [email,setemail]=useState("")
-    const [pass,setpass]=useState("")
-    const [age,setage]=useState("")
-    const [nation,setnation]=useState("")
+    const [firstname, setfirstname] = useState("")
+    const [isErrorname, setisErrorname] = useState(false)
+
+    const [lastname, setlastname] = useState("")
+
+    const [email, setemail] = useState("")
+    const [isErroremail, setisErroremail] = useState(false)
+
+    const [pass, setpass] = useState("")
+    const [isErrorpass, setisErrorpass] = useState(false)
+
+    const [age, setage] = useState("")
+
+
+    const [nation, setnation] = useState("")
+    const [isErrornation, setisErrornation] = useState(false)
+
+    const toast = useToast()
+    const navigate=useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, [])
+
+    function handleclick() {
+
+        if (firstname === "") {
+
+            setisErrorname(true)
+        }
+        else if (email === "") {
+            setisErroremail(true)
+        }
+        else if (pass === "") {
+            setisErrorpass(true)
+        }
+        else if (nation === "") {
+            setisErrornation(true)
+        }
+        else {
+
+            let obj = {
+                name: firstname + " " + lastname,
+                email: email,
+                pass: pass,
+                age: age,
+                nation: nation
+            }
+
+            dispatch(register(obj)).then((res) => {
+                setisErroremail(false)
+                setisErrorname(false)
+                setisErrornation(false)
+                setisErrorpass(false)
+                dispatch({ type: POST_REGISTER_SUCCESS, payload: res.data })
+                setfirstname("")
+                setlastname("")
+                setnation("")
+                setage("")
+                setemail("")
+                setpass("")
+            })
+                .catch((err) => {
+                    console.log(err.response.data.error)
+                    if (err.response.data.error === "Invalid password. It should contain at least one number, one special character, and be at least 8 characters long.") {
+                        setisErrorpass(true)
+                    }
+                    else if (err.response.data.error === "Email already exists, Please Login !!") {
+                        setisErrorpass(false)
+                        setisErroremail(false)
+                        setisErrorname(false)
+                        setisErrornation(false)
+
+                        toast({
+                            position: 'top-right',
+                            title: 'This Account has Already Been Exists.',
+                            description: "For further process, Please Login to your account again !!",
+                            status: 'warning',
+                            duration: 9000,
+                            isClosable: true,
+
+                        })
+                        navigate("/login")
+
+                    }
+                    dispatch({ type: POST_REGISTER_ERROR })
+                })
+
+        }
+    }
     return (<Box >
         <Navbar />
         <Box
@@ -53,30 +140,34 @@ export function Registration() {
                                 p={8}>
                                 <Stack data-aos="fade-left" spacing={9}>
                                     <Flex flexDirection={{ base: 'column', md: 'row' }} width={'100%'} justifyContent={'space-between'} >
+
                                         <Box width={{ base: '100%', md: '45%' }} >
-                                            <FormControl id="firstName" isRequired>
+                                            <FormControl id="firstName" isInvalid={isErrorname} isRequired>
                                                 <FormLabel>First Name</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="text" />
+                                                <Input backgroundColor={'#c1d6f3'} type="text" value={firstname} onChange={(e) => setfirstname(e.target.value)} />
+                                                {!isErrorname ? "" : (
+                                                    <FormErrorMessage>Name is required.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
                                         <Box width={{ base: '100%', md: '45%' }}>
                                             <FormControl id="lastName">
                                                 <FormLabel>Last Name</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="text" />
+                                                <Input backgroundColor={'#c1d6f3'} type="text" value={lastname} onChange={(e) => setlastname(e.target.value)} />
                                             </FormControl>
                                         </Box>
                                     </Flex>
                                     <Flex width={'100%'} flexDirection={{ base: 'column', md: 'row' }} justifyContent={'space-between'} >
                                         <Box width={{ base: '100%', md: '45%' }} >
-                                            <FormControl id="age" isRequired>
+                                            <FormControl id="age" >
                                                 <FormLabel>Age</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="Number" />
+                                                <Input backgroundColor={'#c1d6f3'} type="Number" value={age} onChange={(e) => setage(e.target.value)} />
                                             </FormControl>
                                         </Box>
                                         <Box width={{ base: '100%', md: '45%' }} >
-                                            <FormControl id="password">
+                                            <FormControl id="nation" isInvalid={isErrornation}>
                                                 <FormLabel>Nation</FormLabel>
-                                                <Select backgroundColor={'#c1d6f3'}  placeholder='Select option'>
+                                                <Select backgroundColor={'#c1d6f3'} placeholder='Select option' value={nation} onChange={(e) => setnation(e.target.value)}>
                                                     <option value="Afghanistan">Afghanistan</option>
                                                     <option value="Australia">Australia</option>
                                                     <option value="Canada">Canada</option>
@@ -92,35 +183,53 @@ export function Registration() {
                                                     <option value="Ukraine">Ukraine</option>
                                                     <option value="United States">USA</option>
                                                 </Select>
+                                                {!isErrornation ? "" : (
+                                                    <FormErrorMessage>Nation is required.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
                                     </Flex>
                                     <Flex width={'100%'} direction={'column'} justifyContent={'space-between'} >
                                         <Box width={{ base: '100%', md: '65%' }} margin={'auto'}>
-                                            <FormControl id="email" isRequired>
+                                            <FormControl id="email" isInvalid={isErroremail} isRequired>
                                                 <FormLabel>Email</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="email" />
+                                                <Input backgroundColor={'#c1d6f3'} type="email" value={email} onChange={(e) => setemail(e.target.value)} />
+                                                {!isErroremail ? (
+                                                    <FormHelperText>
+                                                        Enter the email you'd like to receive payment details.
+                                                    </FormHelperText>
+                                                ) : (
+                                                    <FormErrorMessage>Email is required.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
                                         <Box width={{ base: '100%', md: '65%' }} pt={'20px'} margin={'auto'}>
-                                            <FormControl id="password">
+                                            <FormControl id="password" isInvalid={isErrorpass} isRequired>
                                                 <FormLabel>Password</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="password" />
+                                                <Input backgroundColor={'#c1d6f3'} type="password" value={pass} onChange={(e) => setpass(e.target.value)} />
+                                                {!isErrorpass ? (
+                                                    <FormHelperText>
+                                                        Password should contain atleast one number, one special character, and of atleast 8 characters long.
+                                                    </FormHelperText>
+                                                ) : (
+                                                    <FormErrorMessage>Password should contain atleast one number, one special character, and of atleast 8 characters long.</FormErrorMessage>
+                                                )}
                                             </FormControl>
                                         </Box>
+
                                     </Flex>
 
                                     <Stack spacing={10} >
                                         <Button
                                             width={{ base: '100%', md: '50%' }}
                                             margin={'auto'}
-                                            loadingText="Submitting"
+
                                             size="lg"
                                             bg={'blue.400'}
                                             color={'white'}
                                             _hover={{
                                                 bg: 'blue.500',
-                                            }}>
+                                            }} onClick={handleclick}>
                                             Sign up
                                         </Button>
                                     </Stack>
@@ -139,3 +248,5 @@ export function Registration() {
 
     </Box>)
 }
+
+

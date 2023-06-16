@@ -1,9 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import Sidebar from "../Components/sidebar";
+
+import Dashboard from "./Dashboard";
 
 
 export function Admin(){
     return (<Box >
-        <Sidebar/>
+        <Dashboard/>
+        
     </Box>)
 }

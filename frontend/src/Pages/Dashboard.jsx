@@ -34,24 +34,34 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-
+import {Link as ReactLink, useParams} from "react-router-dom"
+import { BsFillBoxSeamFill } from "react-icons/bs";
+import {RiFolderSettingsFill} from "react-icons/ri"
 
 const LinkItems = [
   { name: 'Dashboard', icon: FiHome,link:"/admin/dashboard" },
-  { name: 'Trending', icon: FiTrendingUp,link:"/admin/trending" },
-  { name: 'Explore', icon: FiCompass,link:"/admin/dashboard" },
+  { name: 'Products', icon:BsFillBoxSeamFill,link:"/admin/productsdata" },
+  { name: 'Sales Data', icon: FiTrendingUp,link:"/admin/salesdata" },
+  { name: 'Network', icon: FiCompass,link:"/admin/network" },
   { name: 'Favourites', icon: FiStar,link:"/admin/favourites" },
+  { name: 'Manage stocks', icon:RiFolderSettingsFill,link:"/admin/handlestocks" },
   { name: 'Settings', icon: FiSettings,link:"/admin/setting" },
+  
+
 ];
 
-export default function Sidebar({children}) {
+export default function Dashboard({children}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {place}=useParams()
+  console.log(place)
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+      
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
       />
+      
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
@@ -61,13 +71,30 @@ export default function Sidebar({children}) {
         onOverlayClick={onClose}
         size="full">
         <DrawerContent>
+          
           <SidebarContent onClose={onClose} />
+          
         </DrawerContent>
       </Drawer>
+     
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
+      </Box>
+      <Box>{place==="productsdata"?
+      <Box>productsdata</Box>:
+      place==="salesdata"?
+      <Box>salesdata</Box>:
+      place==="network"?
+      <Box>network</Box>:
+      place==="favourites"?
+      <Box>favourites</Box>:
+      place==="handlestocks"?
+      <Box>handlestocks</Box>:
+      place==="setting"?
+      <Box>setting</Box>:
+      <Box>dashboard</Box>}
       </Box>
     </Box>
   );
@@ -93,7 +120,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} link={link.link}>
           {link.name}
         </NavItem>
       ))}
@@ -102,9 +129,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children,link, ...rest }) => {
+ 
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <ReactLink to={link} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    
       <Flex
         align="center"
         p="4"
@@ -113,7 +142,7 @@ const NavItem = ({ icon, children, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: 'cyan.400',
+          bg: 'gray',
           color: 'white',
         }}
         {...rest}>
@@ -129,7 +158,8 @@ const NavItem = ({ icon, children, ...rest }) => {
         )}
         {children}
       </Flex>
-    </Link>
+   
+    </ReactLink>
   );
 };
 

@@ -16,6 +16,7 @@ import Gift from "../Pages/Gift"
 import Payment from "../Pages/Payment/Payment"
 
 import Pricing from "../Pages/Pricing"
+import Dashboard from "../Pages/Dashboard"
 
 
 
@@ -31,13 +32,14 @@ export const AllRoutes=()=>{
                 <Route path="/wine" element={<Wine/>}/>
 
                 <Route path="/gift" element={<Gift/>}/>
-<Route path="/payment" element={<Payment/>}/>
+                <Route path="/payment" element={<Payment/>}/>
 
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
 
-                <Route path="/admin" element={<Admin/>}/>
 
+                <Route path="/admin" element={<Admin/>}/>
+                <Route path="/admin/:place" element={<Admin/>}/>
 
                 <Route path="/pricing" element={<Pricing/>}/>
 
