@@ -8,7 +8,12 @@ import Wine from "../Pages/Wine"
 
 import Products from "../Pages/Products"
 import SingleProduct from "../Pages/SingleProduct"
+
+import Gift from "../Pages/Gift"
+import Payment from "../Pages/Payment/Payment"
+
 import Pricing from "../Pages/Pricing"
+
 
 
 export const AllRoutes=()=>{
@@ -20,6 +25,10 @@ export const AllRoutes=()=>{
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/adminlogin' element={<Adminlogin/>}/>
                 <Route path="/wine" element={<Wine/>}/>
+
+                <Route path="/gift" element={<Gift/>}/>
+<Route path="/payment" element={<Payment/>}/>
+
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
 
