@@ -80,6 +80,16 @@ export function Registration() {
                 setisErrornation(false)
                 setisErrorpass(false)
                 dispatch({ type: POST_REGISTER_SUCCESS, payload: res.data })
+                toast({
+                    position: 'top-right',
+                    title: 'Account has been Added',
+                    description: "Please Login now !!",   
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+
+                })
+                navigate("/login")
                 setfirstname("")
                 setlastname("")
                 setnation("")
