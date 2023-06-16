@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { FcClock} from "react-icons/fc";
 
 
-function Vegetarian() {
+function Wellness() {
 
   let navigate=useNavigate()
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Vegetarian() {
   console.log("prod",product)
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/products_veg",{
+    fetch("https://frail-toad-sunglasses.cyclic.app/products_well",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"
@@ -86,4 +86,4 @@ function Vegetarian() {
     </Box>
   );
 }
-export default Vegetarian;
+export default Wellness;
