@@ -18,7 +18,7 @@ function Vegetarian() {
   console.log("prod",product)
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/products_veg",{
+    fetch("https://frail-toad-sunglasses.cyclic.app/product/vegetarian",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"

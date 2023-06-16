@@ -18,7 +18,7 @@ function Signature() {
   console.log("prod",product)
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/products_signature",{
+    fetch("https://frail-toad-sunglasses.cyclic.app/product/signature",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"

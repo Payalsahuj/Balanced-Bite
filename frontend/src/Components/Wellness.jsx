@@ -18,7 +18,7 @@ function Wellness() {
   console.log("prod",product)
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/products_well",{
+    fetch("https://frail-toad-sunglasses.cyclic.app/product/wellness",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"
