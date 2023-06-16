@@ -1,12 +1,19 @@
 import { Routes,Route } from "react-router-dom"
 import Home from "../Pages/Home"
+import { Registration } from "../Pages/Registration"
+import { Login } from "../Pages/Login"
+import { Adminlogin } from "../Pages/AdminLogin"
 
 import Wine from "../Pages/Wine"
 
 import Products from "../Pages/Products"
 import SingleProduct from "../Pages/SingleProduct"
+
 import Gift from "../Pages/Gift"
 import Payment from "../Pages/Payment/Payment"
+
+import Pricing from "../Pages/Pricing"
+
 
 
 export const AllRoutes=()=>{
@@ -14,12 +21,19 @@ export const AllRoutes=()=>{
         <div>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-
+                <Route path="/register" element={<Registration/>}/>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/adminlogin' element={<Adminlogin/>}/>
                 <Route path="/wine" element={<Wine/>}/>
+
                 <Route path="/gift" element={<Gift/>}/>
 <Route path="/payment" element={<Payment/>}/>
+
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
+
+                <Route path="/pricing" element={<Pricing/>}/>
+
 
             </Routes>
         </div>

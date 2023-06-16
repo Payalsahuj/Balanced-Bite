@@ -12,12 +12,14 @@ import {
 } from "@chakra-ui/react";
 import Signature from "../Components/Signature";
 import Vegetarian from "../Components/Vegetarian";
+import Wellness from "../Components/Wellness";
 
 function Products() {
   const month = new Date().toDateString();
 
   return (
     <Box>
+      <br />
       <Box>
         <Heading
           marginTop={"80px"}
@@ -96,7 +98,7 @@ function Products() {
             <br />
           </Box>
           <br />
-          <Box width={["90%", "90%", "90%", "80%"]} margin={"auto"}>
+          <Box width={["90%", "90%", "90%", "70%"]} margin={"auto"}>
             <Box>
               <Flex justifyContent={"space-between"} alignItems={"center"}>
                 <Heading size={"md"}>{month}</Heading>
@@ -120,6 +122,15 @@ function Products() {
                 <Signature />
               </TabPanel>
               {/* initially not mounted */}
+              <TabPanel>
+                <Vegetarian />
+              </TabPanel>
+              <TabPanel>
+                <Wellness />
+              </TabPanel>
+              <TabPanel>
+                <Signature />
+              </TabPanel>
               <TabPanel>
                 <Vegetarian />
               </TabPanel>

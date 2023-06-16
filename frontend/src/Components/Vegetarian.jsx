@@ -1,75 +1,58 @@
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductError, getProductSuccess } from "../Redux/ProductReducer/action";
+import { useEffect } from "react";
+import { FcClock} from "react-icons/fc";
 
-const data = [
-  {
-    image:
-      "https://media.blueapron.com/recipes/39019/centered_main_dish_images/1684252895-46-0007-2542/0619_2P11_Guajillo-Chicken-Tacos_338_Web.jpg?quality=80&width=800",
-    title: "Oven-Baked Chicken Tacos",
-    disc: "with Guacamole, Guajillo Sauce & Jalapeño",
-    brand: "READY TO COOK",
-    time: "25 MIN",
-  },
-  {
-    image:
-      "https://media.blueapron.com/recipes/38764/centered_main_dish_images/1684298327-48-0023-7417/0619_2P12_Togarashi-Scallops_670_Web.jpg?quality=80&width=800",
-    title: "Togarashi Scallops",
-    disc: "with Beurre Blanc, Soy Mustard & Sushi Rice",
-    brand: "PREMIUM",
-    time: "35 MIN",
-  },
-  {
-    image:
-      "https://media.blueapron.com/recipes/39019/centered_main_dish_images/1684252895-46-0007-2542/0619_2P11_Guajillo-Chicken-Tacos_338_Web.jpg?quality=80&width=800",
-    title: "Oven-Baked Chicken Tacos",
-    disc: "with Guacamole, Guajillo Sauce & Jalapeño",
-    brand: "READY TO COOK",
-    time: "25 MIN",
-  },
-  {
-    image:
-      "https://media.blueapron.com/recipes/38764/centered_main_dish_images/1684298327-48-0023-7417/0619_2P12_Togarashi-Scallops_670_Web.jpg?quality=80&width=800",
-    title: "Togarashi Scallops",
-    disc: "with Beurre Blanc, Soy Mustard & Sushi Rice",
-    brand: "PREMIUM",
-    time: "35 MIN",
-  },
-  {
-    image:
-      "https://media.blueapron.com/recipes/39019/centered_main_dish_images/1684252895-46-0007-2542/0619_2P11_Guajillo-Chicken-Tacos_338_Web.jpg?quality=80&width=800",
-    title: "Oven-Baked Chicken Tacos",
-    disc: "with Guacamole, Guajillo Sauce & Jalapeño",
-    brand: "READY TO COOK",
-    time: "25 MIN",
-  },
-  {
-    image: "https://media.blueapron.com/recipes/38764/centered_main_dish_images/1684298327-48-0023-7417/0619_2P12_Togarashi-Scallops_670_Web.jpg?quality=80&width=800",
-    title: "Togarashi Scallops",
-    disc: "with Beurre Blanc, Soy Mustard & Sushi Rice",
-    brand: "PREMIUM",
-    time: "35 MIN",
-  }
-];
 
 function Vegetarian() {
 
-  const navigate=useNavigate()
+  let navigate=useNavigate()
+  const dispatch = useDispatch();
+
+  const { isLoading, isError, product } = useSelector(
+    (store) => store.ProductReducer
+  );
+
+  console.log("prod",product)
+
+  const getData=()=>{
+    fetch("https://frail-toad-sunglasses.cyclic.app/products_veg",{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+      dispatch(getProductSuccess(res));
+    })
+    .catch((err)=>{
+      dispatch(getProductError());
+    })
+  }
+
+  useEffect(()=>{
+    getData()
+  },[])
+
   return (
     <Box>
       <SimpleGrid columns={[1, 2, 3, 3]} spacing={5}>
-        {data &&
-          data.map((el,i) => (
+        {product &&
+          product.map((el) => (
             <Flex>
               <Box
                 textAlign={"left"}
                 boxShadow="rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
                 borderRadius={"5px"}
                 cursor={"pointer"}
-                onClick={()=>navigate(`/products/${i}`)}
+                onClick={()=>navigate(`/products/${el._id}`)}
               >
                 <Image
-                  borderTopLeftRadius={"5px"}
-                  borderTopRightRadius={"5px"}
+                  // borderTopLeftRadius={"5px"}
+                  // borderTopRightRadius={"5px"}
                   src={el.image}
                 />
                 <Box
@@ -78,20 +61,23 @@ function Vegetarian() {
                   paddingLeft={"20px"}
                   paddingRight={"20px"}
                 >
-                  <Heading size={"md"}>{el.title}</Heading>
-                  <Box marginTop={"10px"}>{el.disc}</Box>
+                  <Heading size={"md"} noOfLines={1}>{el.name}</Heading>
+                  <Box marginTop={"10px"}>{el.title}</Box>
                   <Box
-                    bgColor={el.brand == "PREMIUM" ? "#1EB389" : "#002C9B"}
+                    bgColor={el.time%2 == 0? "#1EB389" : "#002C9B"}
                     color={"#FFFFFF"}
                     marginTop={"10px"}
                     padding={"5px"}
                     textAlign={"center"}
                     fontWeight={"bold"}
                   >
-                    {el.brand}
+                    {el.time%2==0? "PREMIUM":"READY TO COOK"}
                   </Box>
                   <br />
-                  <Heading size={"sm"}>{el.time}</Heading>
+                  <Flex alignItems={"center"} gap={2}>
+                    <Heading size={"md"}>{<FcClock/>}</Heading>
+                     <Heading size={"sm"}>{el.time} MIN</Heading>
+                  </Flex>
                 </Box>
               </Box>
             </Flex>
