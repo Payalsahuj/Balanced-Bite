@@ -8,7 +8,7 @@ import Wine from "../Pages/Wine"
 
 import Products from "../Pages/Products"
 import SingleProduct from "../Pages/SingleProduct"
-
+import { Admin } from "../Pages/Admin"
 
 export const AllRoutes=()=>{
     return (
@@ -21,6 +21,7 @@ export const AllRoutes=()=>{
                 <Route path="/wine" element={<Wine/>}/>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
+                <Route path="/admin" element={<Admin/>}/>
             </Routes>
         </div>
     )
