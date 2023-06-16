@@ -9,10 +9,14 @@ import Wine from "../Pages/Wine"
 import Products from "../Pages/Products"
 import SingleProduct from "../Pages/SingleProduct"
 
+import { Admin } from "../Pages/Admin"
+
+
 import Gift from "../Pages/Gift"
 import Payment from "../Pages/Payment/Payment"
 
 import Pricing from "../Pages/Pricing"
+
 
 
 
@@ -31,6 +35,9 @@ export const AllRoutes=()=>{
 
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>
+
+                <Route path="/admin" element={<Admin/>}/>
+
 
                 <Route path="/pricing" element={<Pricing/>}/>
 

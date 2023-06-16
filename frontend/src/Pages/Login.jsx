@@ -21,12 +21,14 @@ import {
 import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as Reactlink } from 'react-router-dom';
+import Navbar from "../Components/Navbar";
 export function Login(){
     const [showPassword, setShowPassword] = useState(false);
     useEffect(()=>{
         AOS.init({ duration: 1000 });
     },[])
     return(<Box >
+        <Navbar/>
         <Box
             height={'300px'} backgroundColor={'#0f346c'}></Box>
         <Box >
@@ -66,12 +68,7 @@ export function Login(){
                                                 <Input backgroundColor={'#c1d6f3'} type="password" />
                                             </FormControl>
                                         </Box>
-                                        <Box width={{base:'100%',md:'55%'}} pt={'20px'}  margin={'auto'}>
-                                            <FormControl id="confirmpassword" isRequired>
-                                                <FormLabel> Confirm Password</FormLabel>
-                                                <Input backgroundColor={'#c1d6f3'} type="password" />
-                                            </FormControl>
-                                        </Box>
+                                        
                                     </Flex>
                                     
                                     <Stack  spacing={10} pt={2}>
