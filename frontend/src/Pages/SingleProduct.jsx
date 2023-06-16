@@ -8,6 +8,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { color } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const data = {
   image:
@@ -33,6 +35,31 @@ const data = {
 };
 
 function SingleProduct() {
+  //const [data,setData]=useState({})
+
+  const params=useParams()
+
+  const getData=()=>{
+    fetch(`https://frail-toad-sunglasses.cyclic.app/products_veg/${params.id}`,{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+      console.log("res",res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  useEffect(()=>{
+    getData()
+
+  },[params.id])
+
   return (
     <Box width={["90%", "90%", "90%", "85%"]} margin={"auto"}>
       <br />
