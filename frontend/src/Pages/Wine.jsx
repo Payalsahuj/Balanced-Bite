@@ -13,19 +13,23 @@ import grenache from "../images/grenache.webp";
 import hoisin from "../images/HOISIN-GLAZED_PORK_CHOPS.webp";
 import sheet from "../images/SHEET_PAN_PORK.webp";
 import raise from "../images/raise-a-glass-footer-desktop.webp";
+import Navbar from "../Components/Navbar";
 
 const Wine = () => {
   return (
-    <Box p={"65px"}>
-      <Box position="relative">
-        <Image src={dinnerTime} alt="wine" width="100%" />
+    <Box>
+    <Navbar/>
+   
+      <Box position="relative" pt={["75px","70px","70px","65px"]}>
+        <Image src={dinnerTime} alt="wine" width="100%" filter='brightness(70%)' />
         <Box
           position="absolute"
-          top="50%"
-          left="70%"
+          bgSize={['50px','50%','50%',"90%"]}
+          top={['70%','50%','50%',"50%"]}
+          left={['70%','50%','50%',"70%"]}
           transform="translate(-50%, -50%)"
           textAlign="center"
-          p={4}
+          p={[1,1,0,4]}
           bg="whiteAlpha.900"
           borderRadius="20px"
         >
@@ -33,7 +37,7 @@ const Wine = () => {
             color="#002684"
             fontWeight="900"
             fontFamily="Chronicle Deck"
-            fontSize={["1.8em", "2.8em"]}
+            fontSize={["sm","md","lg","xl","2xl"]}
             lineHeight={1.2}
             mb={2}
           >
@@ -42,26 +46,26 @@ const Wine = () => {
           <Text
             color="#00a0df"
             fontWeight="500"
-            fontSize={["1em", "1.5em"]}
+            fontSize={["sm","md","lg","xl","2xl"]}
             lineHeight={1.35}
             mb={4}
           >
             (and get all the juicy details)
           </Text>
-          <Button bg="#002684" color="white" borderRadius="35px" px={6}>
+          <Button bg="#002684" color="white" borderRadius="35px" px={6} fontSize={["sm","md","lg","xl","2xl"]}> 
             GET STARTED
           </Button>
         </Box>
       </Box>
       <Box textAlign="center" my={8}>
-        <Heading as="h1" fontSize={["2xl", "4xl"]}>
+        <Heading as="h1"  fontSize={["sm","md","lg","xl","2xl"]}>
           How It Works
         </Heading>
         <Flex  mt={8} flexWrap={["wrap","nowrap"]} gap={8}>
           <Box flexBasis={["100%", "50%"]}>
             <Flex align="center" mb={4}>
               <Image src={grapes} alt="grapes" boxSize={["40px", "80px"]} />
-              <Heading as="h3" fontSize={["xl", "2xl"]} ml={2}>
+              <Heading as="h3"  fontSize={["sm","md","lg","xl","2xl"]} ml={2}>
                 INCREDIBLE WINES
               </Heading>
             </Flex>
@@ -72,7 +76,7 @@ const Wine = () => {
           <Box flexBasis={["100%", "50%"]}>
             <Flex align="center" mb={4}>
               <Image src={truck} alt="truck" boxSize={["40px", "80px"]} />
-              <Heading as="h3" fontSize={["xl", "2xl"]} ml={2}>
+              <Heading as="h3"  fontSize={["sm","md","lg","xl","2xl"]} ml={2}>
                 MONTHLY DELIVERY
               </Heading>
             </Flex>
@@ -83,7 +87,7 @@ const Wine = () => {
           <Box flexBasis={["100%", "50%"]}>
             <Flex align="center" mb={4}>
               <Image src={glass} alt="glass" boxSize={["40px", "80px"]} />
-              <Heading as="h3" fontSize={["xl", "2xl"]} ml={2}>
+              <Heading as="h3"  fontSize={["sm","md","lg","xl","2xl"]} ml={2}>
                 SIZED FOR TWO
               </Heading>
             </Flex>
@@ -94,7 +98,7 @@ const Wine = () => {
         </Flex>
       </Box>
       <Box position="relative">
-        <Image src={monthly} alt="wine" width="100%" />
+        <Image src={monthly} alt="wine" width="100%" filter='brightness(70%)' />
         <Box
           position="absolute"
           top="50%"
@@ -103,41 +107,41 @@ const Wine = () => {
           textAlign="left"
           bg="gray.200"
           borderRadius="20px"
-          p={8}
+          p={[2,2,2,8]}
         >
           <Heading
             fontWeight="900"
             fontFamily="Chronicle Deck"
-            fontSize={["2xl", "4xl"]}
-            mb={4}
+            fontSize={["10px","md","lg","xl","3xl"]}
+            mb={[2,2,2,4]}
           >
             Inside Your Monthly Delivery
           </Heading>
-          <Box fontWeight="bold" mb={4}>
+          <Box fontWeight="500" mb={[2,2,2,4]}  fontSize={["10px","sm","lg","xl","xl"]}>
             <Text>
               6 x 500 mL wines or upgrade to standard-sized 750 mL bottles!
             </Text>
-            <Text mt={4}>
+            <Text mt={[2,2,2,4]}>
               Select all reds, all whites, or mix and match your favorites!
             </Text>
-            <Text mt={4}>
+            <Text mt={[2,2,2,4]}>
               We'll include tasting notes, pairing tips, plus stories behind the wines.
             </Text>
           </Box>
-          <Text color="#00a0df" fontWeight="500" fontSize={["1em", "1.5em"]} lineHeight="normal" mt={0}>
+          <Text color="#00a0df" fontWeight="500" fontSize={["8px","md","lg","xl","lg"]} lineHeight="normal" mt={0}>
             Starting at $11 per bottle
           </Text>
-          <Text>
+          <Text  fontSize={["8px","md","lg","xl","lg"]}>
             $75.99/month, incl. shipping* <br />
             <span>*tax applied at checkout</span>
           </Text>
-          <Button bg="#002684" color="white" borderRadius="35px" mt={6}>
+          <Button bg="#002684" color="white" borderRadius={[10,2,2,"35px"]} fontSize={["8px","md","lg","xl","lg"]} mt={[0,0,0,6]} p={[-5,0,0,6]}>
             GET STARTED
           </Button>
         </Box>
       </Box>
-      <Box textAlign="center" my={8} maxW="800px" mx="auto">
-        <Heading as="h2" fontSize={["2xl", "4xl"]}>
+      <Box textAlign="center" my={[2,2,2,8]} maxW="800px" mx="auto">
+        <Heading as="h2" fontSize={["sm","md","lg","xl","lg"]}>
           From Our Vineyard to Your Doorstep
         </Heading>
         <Text>
@@ -146,7 +150,7 @@ const Wine = () => {
         <Image src={process} alt="Making Process" mt={8} width="100%" />
       </Box>
       <Box position="relative" >
-        <Image src={Favorites} alt="Discover your favorites" width="100%" />
+        <Image src={Favorites} alt="Discover your favorites" width="100%" filter='brightness(70%)' />
         <Box
           position="absolute"
           left="30%"
@@ -220,18 +224,18 @@ const Wine = () => {
         </Flex>
       </Box>
       <Box position="relative">
-        <Image src={raise} alt="raise a glass" width="100%" />
+        <Image src={raise} alt="raise a glass" width="100%" filter='brightness(70%)' />
         <Box
           position="absolute"
           borderRadius="20px"
           left="70%"
           textAlign="center"
           transform="translate(-120%, -180%)"
-          p={4}
+          p={[1,1,1,4]}
           color="white"
          //  bg="rgba(0, 0, 0, 0.5)"
         >
-          <Heading as="h1" fontSize={["xl", "4xl"]} mb={4}>
+          <Heading as="h1" fontSize={["sm","md","lg","xl","4xl"]} mb={[1,1,1,4]}>
             Let's Raise A Glasss
           </Heading>
           <Button bg="#002684" color="white" borderRadius="35px">
