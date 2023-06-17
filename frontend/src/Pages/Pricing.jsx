@@ -9,8 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FcApproval } from "react-icons/fc";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllFromCart, getallProducts, updateCartPrice } from "../Redux/CartReducer/action";
+import { useNavigate } from "react-router-dom";
 
 function Pricing() {
+  const [cart, setCart] = useState({});
   const [chef, setChef] = useState(false);
   const [wellness, setWellness] = useState(false);
   const [family, setFamily] = useState(false);
@@ -19,11 +25,140 @@ function Pricing() {
 
   const [serving, setServing] = useState(2);
   const [week, setWeek] = useState(2);
+  const [preference, setPreference]=useState("NOT AVAILABLE")
 
-  useEffect(() => {}, [chef, wellness, family, fast, veggies, serving, week]);
+  const navigate=useNavigate()
+
+  const dispatch = useDispatch();
+  const { cartProduct } = useSelector((store) => store.CartReducer);
+
+  useEffect(() => {
+    getData();
+   // getDataOrder()
+    if(chef){
+      console.log("chef",chef)
+      setPreference("CHEF FAVORITES")
+    }else if(wellness){
+      setPreference("WELLNESS")
+    }else if(family){
+      setPreference("FAMILY FRIENDLY")
+    }else if(fast){
+      setPreference("FAST & EASY")
+    }else if(veggies){
+      setPreference("VEGGIES")
+    }else{
+      setPreference("NOT AVAILABLE")
+    }
+  }, [chef, wellness, family, fast, veggies, serving, week,preference]);
+
+  // const getDataOrder = () => {
+  //   fetch("https://frail-toad-sunglasses.cyclic.app/order", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `${localStorage.getItem("token")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log("order",res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const getData = () => {
+    fetch("https://frail-toad-sunglasses.cyclic.app/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        //console.log("res",res[res.length-1])
+        dispatch(getallProducts(res[res.length - 1]));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleDelete=()=>{
+    fetch("https://frail-toad-sunglasses.cyclic.app/cart/deleteallcart", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        //console.log("res",res[res.length-1])
+        dispatch(deleteAllFromCart());
+        getData()
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const handleDeleteAll=()=>{
+    let payload={
+      price:(week + serving+(cartProduct? cartProduct?.price:0) + 9.99).toFixed(2),
+      highlight:preference
+    }
+    let arrProduct=[]
+    let AddOrderObj={about_dish:cartProduct?.about_dish,calories:cartProduct?.calories,category:cartProduct?.category,highlight:payload?.highlight,image:cartProduct?.image,ingredients_image:cartProduct?.ingredients_image,name:cartProduct?.name,price:payload?.price,time:cartProduct?.time,title:cartProduct?.title,userID:cartProduct?.userID}
+
+    arrProduct.push(AddOrderObj)
+    console.log("payload",payload)
+
+    fetch("https://frail-toad-sunglasses.cyclic.app/order/add", {
+      method: "POST",
+      body:JSON.stringify(arrProduct),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      fetch("https://frail-toad-sunglasses.cyclic.app/cart/deleteallcart", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        //console.log("res",res[res.length-1])
+        console.log(res)
+        dispatch(deleteAllFromCart());
+        getData()
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      navigate("/payment")
+
+  }
+
+  console.log("prod", cartProduct);
 
   return (
     <Box backgroundColor={"#f8f9fa"}>
+      <Navbar />
       <br />
       <br />
       <br />
@@ -46,6 +181,97 @@ function Pricing() {
         </Text>
         <br />
         <br />
+        {cartProduct &&
+        <SimpleGrid
+          columns={[1, 1, 1, 3]}
+          padding={["10px", "15px", "25px", "40px"]}
+          backgroundColor={"#FFFFFF"}
+          spacing={10}
+          boxShadow={
+            "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset"
+          }
+        >
+          <Box>
+            <Image width={"100%"} height={"100%"} src={cartProduct?.image} />
+          </Box>
+          <Box textAlign={"left"}>
+            <Heading fontSize={"2xl"} fontFamily={"heading"} color={"#002684"}>
+              {cartProduct?.name}
+            </Heading>
+            <br />
+            <Text color={"#6A6D75"} fontSize={"lg"}>
+              {cartProduct?.title}
+            </Text>
+            <br />
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+                TIME FOR COOKING
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+                {cartProduct?.time} MIN
+              </Text>
+            </Flex>
+            
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+                PRICE'S OF SERVING
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+                $ {cartProduct?.price}
+              </Text>
+            </Flex>
+            
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+                CALORIES OF MEAL
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+                {cartProduct?.calories}
+              </Text>
+            </Flex>
+            
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+                CATEGORY'S MEAL
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+              {(cartProduct?.category)?.toUpperCase()}
+              </Text>
+            </Flex>
+            
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+               NUTRITION'S MEAL
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+                {serving} SERVING
+              </Text>
+            </Flex>
+            <Flex alignItems={"center"} gap={10}>
+              <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+                PREFERENCE ARE
+              </Text>
+              <Text fontSize={"lg"} fontWeight={"bolder"}>
+                {preference}
+              </Text>
+            </Flex>
+          </Box>
+          <Box textAlign={"left"}>
+            <Text color={"#6A6D75"} fontSize={"lg"} fontWeight={"bold"}>
+              {cartProduct?.about_dish}
+            </Text>
+            <br />
+            <Button
+              colorScheme="orange"
+              variant={"solid"}
+              padding={["10px 25px", "15px 25px", "20px 30px", "25px 50px"]}
+              borderRadius={"50px"}
+              onClick={handleDelete}
+            >
+              DELETE
+            </Button>
+          </Box>
+        </SimpleGrid>}
         <SimpleGrid
           columns={[1, 1, 1, 2]}
           padding={["10px", "15px", "25px", "40px"]}
@@ -466,7 +692,6 @@ function Pricing() {
                     color={week == 5 ? "#FFFFFF" : "#002684"}
                     variant={"solid"}
                     onClick={() => setWeek(5)}
-                    
                   >
                     5
                   </Button>
@@ -497,7 +722,7 @@ function Pricing() {
                     fontWeight={"bold"}
                     marginTop={"5px"}
                   >
-                    $ {week + serving + 0.45}
+                    $ {cartProduct? (week + serving + cartProduct?.price).toFixed(2):(week+serving).toFixed(2)}
                   </Text>
                 </Flex>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
@@ -533,7 +758,7 @@ function Pricing() {
                     fontWeight={"bold"}
                     marginTop={"15px"}
                   >
-                    $ {(week + serving + 9.99).toFixed(2)}
+                    $ {(week + serving+(cartProduct? cartProduct?.price:0) + 9.99).toFixed(2)}
                   </Text>
                 </Flex>
                 <br />
@@ -544,6 +769,8 @@ function Pricing() {
                   variant={"solid"}
                   padding={["10px 25px", "15px 25px", "20px 30px", "25px 50px"]}
                   borderRadius={"50px"}
+                  onClick={handleDeleteAll}
+                  isDisabled={!cartProduct}
                 >
                   CONTINUE
                 </Button>
@@ -651,6 +878,7 @@ function Pricing() {
       </Box>
       <br />
       <br />
+      <Footer />
     </Box>
   );
 }
