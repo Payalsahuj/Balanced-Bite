@@ -19,7 +19,7 @@ import {
     Link,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+// import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {  Link as Reactlink, useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
 
@@ -67,16 +67,17 @@ export function Login(){
                 console.log(res)
                 setisErroremail(false)
                 setisErrorpass(false)
-                dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data })
+                dispatch({ type: POST_LOGIN_SUCCESS, payload: res.data.user })
                 toast({
                     position: 'top',
                     title: res.data.msg,
                     status: 'success',
-                    duration: 9000,
+                    duration: 4000,
                     isClosable: true,
 
                 })
                 localStorage.setItem("token",res.data.token)
+                
                 setemail("")
                 setpass("")
                 navigate("/")
@@ -84,28 +85,29 @@ export function Login(){
                 
             })
                 .catch((err) => {
-                    console.log(err.response.data.error)
-                    if (err.response.data.error === "Invalid Password !!") {
+                    console.log(err)
+                    if (err.response.data.msg === "Invalid Password !!") {
                         setisErrorpass(true)
                         setisErroremail(false)
                         toast({
                             position: 'top-right',
-                            title: err.response.data.error,
+                            title: err.response.data.msg,
                             status: 'warning',
-                            duration: 9000,
+                            duration: 3000,
                             isClosable: true,
 
                         })
                     }
-                    else if (err.response.data.error === "Invalid email !!") {
+                    else if (err.response.data.msg === "Invalid email !!") {
+                        
                         setisErrorpass(false)
                         setisErroremail(true)
 
                         toast({
                             position: 'top-right',
-                            title: err.response.data.error,
+                            title: err.response.data.msg,
                             status: 'warning',
-                            duration: 9000,
+                            duration: 3000,
                             isClosable: true,
 
                         })

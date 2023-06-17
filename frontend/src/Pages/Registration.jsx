@@ -85,7 +85,7 @@ export function Registration() {
                     title: 'Account has been Added',
                     description: "Please Login now !!",   
                     status: 'success',
-                    duration: 9000,
+                    duration: 4000,
                     isClosable: true,
 
                 })
@@ -113,7 +113,7 @@ export function Registration() {
                             title: 'This Account has Already Been Exists.',
                             description: "For further process, Please Login to your account again !!",
                             status: 'warning',
-                            duration: 9000,
+                            duration: 4000,
                             isClosable: true,
 
                         })
