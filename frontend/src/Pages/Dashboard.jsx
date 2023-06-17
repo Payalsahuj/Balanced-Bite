@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { useEffect } from 'react';
 import {
   IconButton,
   Avatar,
@@ -21,7 +21,21 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Grid,
+  Heading,
+  Image,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
 } from '@chakra-ui/react';
+import AOS from "aos"
+import "aos/dist/aos.css"
 import {
   FiHome,
   FiTrendingUp,
@@ -34,34 +48,94 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-import {Link as ReactLink, useParams} from "react-router-dom"
+import { Link as ReactLink, useParams } from "react-router-dom"
 import { BsFillBoxSeamFill } from "react-icons/bs";
-import {RiFolderSettingsFill} from "react-icons/ri"
+import { RiFolderSettingsFill } from "react-icons/ri"
+import "../Allcss/dashboard.css"
+import logo from "../Image/admin.jpg"
+import { FiUsers } from "react-icons/fi"
+import { VscGraph } from "react-icons/vsc"
+import { FaUsers } from "react-icons/fa"
+import { TbTruckDelivery } from 'react-icons/tb'
+import { MdCategory } from "react-icons/md"
+import { Linechart } from '../Components/Linegraph';
+import { Link as Reactlink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getallproducts, getallusersdata } from '../Redux/AdminReducer/action';
+import { useState } from 'react';
+import { ERROR, GET_ALLPRODUCTDATA, GET_ALLUSERDATA } from '../Redux/AdminReducer/actionType';
+import { Piechart } from '../Components/Piechart';
+import { RiAdminFill } from "react-icons/ri"
+import Carousel from '../Components/carousel';
+
+
+
 
 const LinkItems = [
-  { name: 'Dashboard', icon: FiHome,link:"/admin/dashboard" },
-  { name: 'Products', icon:BsFillBoxSeamFill,link:"/admin/productsdata" },
-  { name: 'Sales Data', icon: FiTrendingUp,link:"/admin/salesdata" },
-  { name: 'Network', icon: FiCompass,link:"/admin/network" },
-  { name: 'Favourites', icon: FiStar,link:"/admin/favourites" },
-  { name: 'Manage stocks', icon:RiFolderSettingsFill,link:"/admin/handlestocks" },
-  { name: 'Settings', icon: FiSettings,link:"/admin/setting" },
-  
+  { name: 'Dashboard', icon: FiHome, link: "/admin/dashboard" },
+  { name: 'Products', icon: BsFillBoxSeamFill, link: "/admin/productsdata" },
+  { name: 'Sales Data', icon: FiTrendingUp, link: "/admin/salesdata" },
+  { name: 'Network', icon: FiCompass, link: "/admin/network" },
+  { name: 'Favourites', icon: FiStar, link: "/admin/favourites" },
+  { name: 'Manage stocks', icon: RiFolderSettingsFill, link: "/admin/handlestocks" },
+  { name: 'Admin Data', icon: RiAdminFill, link: "/admin/admindata" },
+  { name: 'Settings', icon: FiSettings, link: "/admin/setting" },
 
 ];
 
-export default function Dashboard({children}) {
+
+
+
+
+export default function Dashboard({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {place}=useParams()
-  console.log(place)
+  const { place } = useParams()
+
+  const dispatch = useDispatch()
+  const store = useSelector(store => store.adminReducer)
+
+
+  function fetchdata() {
+    dispatch(getallusersdata).then((res) => {
+      dispatch({ type: GET_ALLUSERDATA, payload: res.data })
+    })
+      .catch((err) => {
+        dispatch({ type: ERROR })
+      })
+    dispatch(getallproducts).then((res) => {
+
+      dispatch({ type: GET_ALLPRODUCTDATA, payload: res.data })
+    })
+      .catch((err) => {
+        dispatch({ type: ERROR })
+      })
+
+
+
+  }
+
+  useEffect(() => {
+    AOS.init({ duration: 800 });
+    fetchdata()
+  }, [])
+
+  let arr = []
+  for (let x = 0; x < store.product.length; x++) {
+    if (!arr.includes(store.product[x].category)) {
+      arr.push(store.product[x].category)
+    }
+  }
+
+
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      
+
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+
       />
-      
+
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
@@ -71,30 +145,141 @@ export default function Dashboard({children}) {
         onOverlayClick={onClose}
         size="full">
         <DrawerContent>
-          
+
           <SidebarContent onClose={onClose} />
-          
+
         </DrawerContent>
       </Drawer>
-     
+
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-      <Box>{place==="productsdata"?
-      <Box>productsdata</Box>:
-      place==="salesdata"?
-      <Box>salesdata</Box>:
-      place==="network"?
-      <Box>network</Box>:
-      place==="favourites"?
-      <Box>favourites</Box>:
-      place==="handlestocks"?
-      <Box>handlestocks</Box>:
-      place==="setting"?
-      <Box>setting</Box>:
-      <Box>dashboard</Box>}
+      <Box paddingLeft={'19%'} paddingRight={'4%'}>{place === "productsdata" ?
+        <Box>
+
+          < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
+
+        </Box> :
+        place === "salesdata" ?
+          <Box >
+            <Text data-aos="fade-left">salesdata</Text>
+
+          </Box> :
+          place === "network" ?
+            <Box>network</Box> :
+            place === "favourites" ?
+              <Box>favourites</Box> :
+              place === "handlestocks" ?
+                <Box>handlestocks</Box> :
+                place === "admindata" ?
+                  <Box>
+                    <Carousel />
+
+                  </Box> :
+                  place === "setting" ?
+                    <Box>setting</Box> :
+                    <Box >
+
+                      <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box><FaUsers size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
+                          </Box>
+                          <Box >
+                            <Heading as={'h1'} >{store.userdata.length}</Heading>
+                          </Box>
+                        </Box>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><VscGraph size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL STOCKS</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>{store.product.length}</Heading>
+                          </Box>
+                        </Box>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><TbTruckDelivery size="24" /></Box>
+                            <Box ml={3} mt={1} >ORDERS DETAIL</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>46</Heading>
+                          </Box>
+                        </Box>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><MdCategory size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>{arr.length}</Heading>
+                          </Box>
+                        </Box>
+
+                      </Grid>
+
+
+
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
+                      <Box data-aos="zoom-in" height={'390px'} overflow={'scroll'} boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <TableContainer bg={'white'}>
+                          <Table variant='striped' colorScheme='blue'>
+                            <TableCaption>Imperial to metric conversion factors</TableCaption>
+                            <Thead>
+                              <Tr>
+                                <Th>S. no.</Th>
+                                <Th>Name</Th>
+                                <Th>Category</Th>
+                                <Th >Prepration time</Th>
+                                <Th>Price</Th>
+                                <Th >Calories</Th>
+                              </Tr>
+                            </Thead>
+                            <Tbody>
+                              {store.product.map((ele, index) => <Tr key={index}>
+                                <Td>{index + 1}</Td>
+                                <Td style={{ display: 'flex' }}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt="" /> {ele.name}</Td>
+                                <Td>{ele.category}</Td>
+                                <Td>{ele.time}:00</Td>
+                                <Td>{ele.price}</Td>
+                                <Td>{ele.calories}</Td>
+                              </Tr>)}
+                            </Tbody>
+                            {/* <Tfoot>
+                            <Tr>
+                              <Th>To convert</Th>
+                              <Th>into</Th>
+                              <Th isNumeric>multiply by</Th>
+                            </Tr>
+                          </Tfoot> */}
+                          </Table>
+                        </TableContainer>
+                      </Box>
+
+
+
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
+
+                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <Linechart />
+                      </Box>
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
+
+                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <Piechart />
+                      </Box>
+
+                    </Box>}
       </Box>
     </Box>
   );
@@ -114,9 +299,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Reactlink to='/'><Image src={logo} ml={'-15%'} alt='Logo' /></Reactlink>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -129,11 +312,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 
-const NavItem = ({ icon, children,link, ...rest }) => {
- 
+const NavItem = ({ icon, children, link, ...rest }) => {
+
   return (
     <ReactLink to={link} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-    
+
       <Flex
         align="center"
         p="4"
@@ -158,13 +341,16 @@ const NavItem = ({ icon, children,link, ...rest }) => {
         )}
         {children}
       </Flex>
-   
+
     </ReactLink>
   );
 };
 
 
 const MobileNav = ({ onOpen, ...rest }) => {
+
+
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -184,13 +370,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold">
-        Logo
-      </Text>
+
+      <Reactlink to='/'><Image src={logo} display={{ base: 'flex', md: 'none' }} h={'50px'} alt='Logo' /></Reactlink>
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton
@@ -217,7 +398,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm" color="black">Justina Clark</Text>
+                  <Text fontSize="sm" color="black" data-aos="fade-left">{localStorage.getItem("name")}</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>

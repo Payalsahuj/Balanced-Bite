@@ -11,9 +11,10 @@ export const register =(data)=> (dispatch) => {
 };
 
 export const login=(data)=>(dispatch)=>{
-  console.log(data)
+  // console.log(data)
     
   dispatch({type:POST_REGISTER_REQUEST})
 
   return axios.post("https://frail-toad-sunglasses.cyclic.app/users/login",data)
 }
+
