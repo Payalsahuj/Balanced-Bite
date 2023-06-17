@@ -21,7 +21,7 @@ const settings = {
   infinite: true,
   autoplay: true,
   speed: 400,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 4000,
   slidesToShow: 1,
   slidesToScroll: 1,
 };
@@ -40,23 +40,24 @@ export default function Carousel() {
   // This can be static or loaded from a server
   const cards = [
     {
-      title: 'Design Projects 1',
-      text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+        title: 'End to End Security',
+        text:
+          "A good hash function for security purposes must be a unidirectional process that uses a one-way hashing algorithm.",
+      
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        "https://static.vecteezy.com/system/resources/previews/001/330/299/original/cyber-technology-security-network-protection-background-free-vector.jpg",
     },
     {
-      title: 'Design Projects 2',
-      text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+        title: '',
+        text:
+          "",
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        'https://www.cmarix.com/blog/wp-content/uploads/2019/09/Mern.jpg',
     },
     {
-      title: 'Design Projects 3',
+      title: 'Balanced Bite',
       text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+        "We the team of ‘Balanced Bite’ not only believe in development, but we also believe in humanity, trust, and honesty. With our honest and pure souls, we always tried to provide the best quality and healthy meals to the customers.",
       image:
         'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
     },
@@ -88,7 +89,7 @@ export default function Carousel() {
         left={side}
         top={top}
         transform={'translate(0%, -50%)'}
-        zIndex={2}
+        // zIndex={2}
         onClick={() => slider?.slickPrev()}>
         <BiLeftArrowAlt size="40px" />
       </IconButton>
@@ -100,7 +101,7 @@ export default function Carousel() {
         right={side}
         top={top}
         transform={'translate(0%, -50%)'}
-        zIndex={2}
+        // zIndex={2}
         onClick={() => slider?.slickNext()}>
         <BiRightArrowAlt size="40px" />
       </IconButton>
@@ -109,26 +110,29 @@ export default function Carousel() {
         {cards.map((card, index) => (
           <Box
             key={index}
-            
+            // filter={'brightness(70%)'}
+            backgroundImage={`url(${card.image})`}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            border={'2px solid red'}
+            // border={'2px solid red'}
             >
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="300px" position="relative">
+            <Container size="container.lg" height="350px" position="relative">
               <Stack
                 spacing={6}
                 w={'full'}
                 maxW={'lg'}
                 position="absolute"
                 top="43%"
+                left={'-48%'}
+                textAlign={'left'}
                 transform="translate(0, -50%)">
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+                <Heading  fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
+                <Text fontSize={{ base: 'md', lg: 'lg' }} >
                   {card.text}
                 </Text>
               </Stack>

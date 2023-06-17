@@ -65,7 +65,7 @@ import { getallproducts, getallusersdata } from '../Redux/AdminReducer/action';
 import { useState } from 'react';
 import { ERROR, GET_ALLPRODUCTDATA, GET_ALLUSERDATA } from '../Redux/AdminReducer/actionType';
 import { Piechart } from '../Components/Piechart';
-import {RiAdminFill} from "react-icons/ri"
+import { RiAdminFill } from "react-icons/ri"
 import Carousel from '../Components/carousel';
 
 
@@ -82,6 +82,9 @@ const LinkItems = [
   { name: 'Settings', icon: FiSettings, link: "/admin/setting" },
 
 ];
+
+
+
 
 
 export default function Dashboard({ children }) {
@@ -154,7 +157,11 @@ export default function Dashboard({ children }) {
         {children}
       </Box>
       <Box paddingLeft={'19%'} paddingRight={'4%'}>{place === "productsdata" ?
-        <Box>productsdata</Box> :
+        <Box>
+
+          < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
+
+        </Box> :
         place === "salesdata" ?
           <Box >
             <Text data-aos="fade-left">salesdata</Text>
@@ -167,112 +174,112 @@ export default function Dashboard({ children }) {
               place === "handlestocks" ?
                 <Box>handlestocks</Box> :
                 place === "admindata" ?
-                <Box>
-                  <Carousel/>
+                  <Box>
+                    <Carousel />
 
-                </Box> :
-                place === "setting" ?
-                  <Box>setting</Box> :
-                  <Box >
+                  </Box> :
+                  place === "setting" ?
+                    <Box>setting</Box> :
+                    <Box >
 
-                    <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
-                      <Box data-aos="zoom-in" className='collect' >
-                        <Box className='innercollect'>
-                          <Box><FaUsers size="24" /></Box>
-                          <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
+                      <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box><FaUsers size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
+                          </Box>
+                          <Box >
+                            <Heading as={'h1'} >{store.userdata.length}</Heading>
+                          </Box>
                         </Box>
-                        <Box >
-                          <Heading as={'h1'} >{store.userdata.length}</Heading>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><VscGraph size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL STOCKS</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>{store.product.length}</Heading>
+                          </Box>
                         </Box>
-                      </Box>
-                      <Box data-aos="zoom-in" className='collect' >
-                        <Box className='innercollect'>
-                          <Box b><VscGraph size="24" /></Box>
-                          <Box ml={3} mt={1} >TOTAL STOCKS</Box>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><TbTruckDelivery size="24" /></Box>
+                            <Box ml={3} mt={1} >ORDERS DETAIL</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>46</Heading>
+                          </Box>
                         </Box>
-                        <Box>
-                          <Heading as={'h1'}>{store.product.length}</Heading>
+                        <Box data-aos="zoom-in" className='collect' >
+                          <Box className='innercollect'>
+                            <Box b><MdCategory size="24" /></Box>
+                            <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
+                          </Box>
+                          <Box>
+                            <Heading as={'h1'}>{arr.length}</Heading>
+                          </Box>
                         </Box>
-                      </Box>
-                      <Box data-aos="zoom-in" className='collect' >
-                        <Box className='innercollect'>
-                          <Box b><TbTruckDelivery size="24" /></Box>
-                          <Box ml={3} mt={1} >ORDERS DETAIL</Box>
-                        </Box>
-                        <Box>
-                          <Heading as={'h1'}>46</Heading>
-                        </Box>
-                      </Box>
-                      <Box data-aos="zoom-in" className='collect' >
-                        <Box className='innercollect'>
-                          <Box b><MdCategory size="24" /></Box>
-                          <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
-                        </Box>
-                        <Box>
-                          <Heading as={'h1'}>{arr.length}</Heading>
-                        </Box>
-                      </Box>
 
-                    </Grid>
+                      </Grid>
 
 
 
-                    <br />
-                    <br />
-                    < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
-                    <Box data-aos="zoom-in" height={'390px'} overflow={'scroll'} boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                      <TableContainer bg={'white'}>
-                        <Table variant='striped' colorScheme='blue'>
-                          <TableCaption>Imperial to metric conversion factors</TableCaption>
-                          <Thead>
-                            <Tr>
-                              <Th>S. no.</Th>
-                              <Th>Name</Th>
-                              <Th>Category</Th>
-                              <Th >Prepration time</Th>
-                              <Th>Price</Th>
-                              <Th >Calories</Th>
-                            </Tr>
-                          </Thead>
-                          <Tbody>
-                            {store.product.map((ele,index)=><Tr key={index}>
-                              <Td>{index+1}</Td>
-                              <Td style={{display:'flex'}}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt=""/> {ele.name}</Td>
-                              <Td>{ele.category}</Td>
-                              <Td>{ele.time}:00</Td>
-                              <Td>{ele.price}</Td>
-                              <Td>{ele.calories}</Td>
-                            </Tr>)}
-                          </Tbody>
-                          {/* <Tfoot>
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
+                      <Box data-aos="zoom-in" height={'390px'} overflow={'scroll'} boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <TableContainer bg={'white'}>
+                          <Table variant='striped' colorScheme='blue'>
+                            <TableCaption>Imperial to metric conversion factors</TableCaption>
+                            <Thead>
+                              <Tr>
+                                <Th>S. no.</Th>
+                                <Th>Name</Th>
+                                <Th>Category</Th>
+                                <Th >Prepration time</Th>
+                                <Th>Price</Th>
+                                <Th >Calories</Th>
+                              </Tr>
+                            </Thead>
+                            <Tbody>
+                              {store.product.map((ele, index) => <Tr key={index}>
+                                <Td>{index + 1}</Td>
+                                <Td style={{ display: 'flex' }}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt="" /> {ele.name}</Td>
+                                <Td>{ele.category}</Td>
+                                <Td>{ele.time}:00</Td>
+                                <Td>{ele.price}</Td>
+                                <Td>{ele.calories}</Td>
+                              </Tr>)}
+                            </Tbody>
+                            {/* <Tfoot>
                             <Tr>
                               <Th>To convert</Th>
                               <Th>into</Th>
                               <Th isNumeric>multiply by</Th>
                             </Tr>
                           </Tfoot> */}
-                        </Table>
-                      </TableContainer>
-                    </Box>
+                          </Table>
+                        </TableContainer>
+                      </Box>
 
 
 
-                    <br />
-                    <br />
-                    < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
 
-                    <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                      <Linechart />
-                    </Box>
-                    <br />
-                    <br />
-                    < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
+                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <Linechart />
+                      </Box>
+                      <br />
+                      <br />
+                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
 
-                    <Box  boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                      <Piechart />
-                    </Box>
+                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                        <Piechart />
+                      </Box>
 
-                  </Box>}
+                    </Box>}
       </Box>
     </Box>
   );
