@@ -13,12 +13,15 @@ import {
 import Signature from "../Components/Signature";
 import Vegetarian from "../Components/Vegetarian";
 import Wellness from "../Components/Wellness";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 function Products() {
   const month = new Date().toDateString();
 
   return (
     <Box>
+      <Navbar/>
       <br />
       <Box>
         <Heading
@@ -140,6 +143,7 @@ function Products() {
       </Box>
       <br />
       <br />
+      <Footer/>
     </Box>
   );
 }

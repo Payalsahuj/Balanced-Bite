@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FcClock } from "react-icons/fc";
 import { useToast } from '@chakra-ui/react'
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 
 function SingleProduct() {
@@ -53,7 +55,7 @@ function SingleProduct() {
       body:JSON.stringify(sdata),
       headers:{
         "Content-Type":"application/json",
-        // Authorization: `${localStorage.getItem("token")}`
+        Authorization: `${localStorage.getItem("token")}`
       }
     })
     .then((res)=>res.json())
@@ -71,7 +73,7 @@ function SingleProduct() {
 
       }else{
         toast({
-          title: 'Product Added to Cart',
+          title: `${sdata?.name} Added To Checkout`,
           status: 'success',
           duration: 9000,
           position: 'top',
@@ -108,6 +110,9 @@ function SingleProduct() {
   console.log("arr",arr)
 
   return (
+    <Box>
+      <Navbar/>
+    
     <Box width={["90%", "90%", "90%", "80%"]} margin={"auto"}>
       <br />
       <br />
@@ -309,6 +314,8 @@ function SingleProduct() {
       <br />
       <hr />
       <br />
+    </Box>
+    <Footer/>
     </Box>
   );
 }
