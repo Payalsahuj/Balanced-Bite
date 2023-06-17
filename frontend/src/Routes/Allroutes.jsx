@@ -13,10 +13,13 @@ import { Admin } from "../Pages/Admin"
 
 
 import Gift from "../Pages/Gift"
-import Payment from "../Pages/Payment/Payment"
 
 import Pricing from "../Pages/Pricing"
 import Dashboard from "../Pages/Dashboard"
+import PersonalDetails from "../Pages/Payment/PersonalDetails"
+import Card from "../Pages/Payment/Card"
+import Summary from "../Pages/Payment/Summary"
+import Complete from "../Pages/Payment/Complete"
 
 
 
@@ -32,7 +35,10 @@ export const AllRoutes=()=>{
                 <Route path="/wine" element={<Wine/>}/>
 
                 <Route path="/gift" element={<Gift/>}/>
-                <Route path="/payment" element={<Payment/>}/>
+                <Route path="/payment" element={<PersonalDetails/>}/>
+                <Route path="/payment/card" element={<Card/>}/>
+                <Route path="/payment/summary" element={<Summary/>}/>
+                <Route path="/payment/complete" element={<Complete/>}/>
 
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<SingleProduct/>}/>

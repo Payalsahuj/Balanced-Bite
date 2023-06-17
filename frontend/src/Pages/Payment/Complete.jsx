@@ -1,20 +1,22 @@
-import { Box, Text, Link, Center } from "@chakra-ui/react";
+import { Box, Text, Link, Center, Button } from "@chakra-ui/react";
 import { BsCheckCircle } from "react-icons/bs";
 import CelebrationVideo from "./celebration-video.webm";
+import { useNavigate } from "react-router-dom";
 
 const Complete = () => {
+   const navigate = useNavigate()
    return (
       <Box
          className="complete"
          textAlign="center"
          p={8}
-         // bg="gray.200"
+         mx="auto" px={["1rem", "2rem", "4rem"]} py="10%"
          borderRadius="md"
          boxShadow="md"
-         // maxW="400px"
-         mx="auto"
+        
+         bg={"blue.100"}
       >
-         <Center position="relative">
+         <Center position="relative" maxW={"800px"} margin={"auto"} box-shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
             <video autoPlay loop muted style={{ width: "100%" }}>
                <source src={CelebrationVideo} type="video/mp4" />
             </video>
@@ -32,13 +34,18 @@ const Complete = () => {
             </Center>
          </Center>
 
-         <Text mt={4}>
+         <Text mt={4} fontSize={['sm','md',"lg","xl","2xl"]}>
             Please check your email for details concerning this transaction.
          </Text>
 
-         <Link href="/" color="blue.500" mt={6} display="inline-block">
+      <Button mt={6} onClick={()=>{
+         navigate("/")
+      }}>
+      Return Home
+      </Button>
+         {/* <Link href="/" color="blue.500" mt={6} display="inline-block">
             Return Home
-         </Link>
+         </Link> */}
       </Box>
    );
 };
