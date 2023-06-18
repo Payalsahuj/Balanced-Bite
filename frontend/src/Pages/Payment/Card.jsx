@@ -16,7 +16,7 @@ import Navbar from "../../Components/Navbar";
 import load from "./loading.gif";
 
 const Card = () => {
-   const [order,setOrder] = useState([])
+   const [order,setOrder] = useState({})
    const [id,setId] = useState("")
    const [x,setx] = useState(false);
    const [cardData, setCardData] = useState({
@@ -38,9 +38,9 @@ const Card = () => {
          .then((res) => res.json())
          .then((res) => {
             console.log("order",res)
-           setOrder(res) 
-           setId(res[res.length-1]._id)
-           console.log('id in line 54 ',id)
+           setOrder(res[res.length-1]._id) 
+          
+           
          })
          .catch((err) => {
            console.log(err);
@@ -56,52 +56,57 @@ const Card = () => {
 
    const navigate = useNavigate();
    const handleSubmit = (e) => {
-      e.preventDefault();
-      setx(true);
-      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/update/${id}`, {
-         method: "PATCH",
-         body:JSON.stringify(cardData),
-         headers: {
-           "Content-Type": "application/json",
-          
-           Authorization: `${localStorage.getItem("token")}`,
-         },
+    e.preventDefault();
+    setx(true);
+    fetch(`https://frail-toad-sunglasses.cyclic.app/order/update/${order?._id}`, {
+       method: "PATCH",
+       body: JSON.stringify({card:cardData}),
+       headers: {
+          "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("token")}`,
+       },
+    })
+       .then((res) => res.json())
+       .then((res) => {
+          console.log("order in line 71", res);
        })
-         .then((res) => res.json())
-         .then((res) => {
-            console.log("order",res)
-           
-         })
-         .catch((err) => {
-            console.log(err.message);
-         });
-         
-      setTimeout(() => {
-         navigate("/payment/complete");
-      }, 4000);
-      console.log(cardData);
-   };
+       .catch((err) => {
+          console.log(err);
+       });
 
-   const handleCancel = (e)=>{
-      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
-         method: "DELETE",
-     
-         headers: {
-           "Content-Type": "application/json",
-           Authorization: `${localStorage.getItem("token")}`,
-         },
+    // console.log(cardData);
+    setTimeout(() => {
+       navigate("/payment/complete");
+       setx(false);
+    }, 3000);
+ };
+
+   const handleCancel = (e) => {
+    fetch(`https://frail-toad-sunglasses.cyclic.app/order/deleteallorder`, {
+       method: "DELETE",
+
+       headers: {
+          //   "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("token")}`,
+       },
+    })
+       .then((res) => res.json())
+       .then((res) => {
+          console.log("order", res);
        })
-         .then((res) => res.json())
-         .then((res) => {
-            console.log("order",res)
-           
-         })
-         .catch((err) => {
-            console.log(err.message);
-         });
-      navigate('/')
-         }  
-
+       .catch((err) => {
+          console.log(err.message);
+       });
+    alert("Your Order Canceled");
+    navigate("/");
+    setCardData({
+      nameOnCard: "",
+      cardType: "",
+      cardNumber: "",
+      expiryDate: "",
+      cvv: "",
+    });
+ };
 
   return (
     <Box
