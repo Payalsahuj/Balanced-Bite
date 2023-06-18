@@ -9,13 +9,12 @@ import {
   VStack,
   Icon,
   useColorModeValue,
-  Link,
+
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
+
   Menu,
   MenuButton,
   MenuDivider,
@@ -27,12 +26,13 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
+
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
+
 } from '@chakra-ui/react';
 import AOS from "aos"
 import "aos/dist/aos.css"
@@ -40,33 +40,39 @@ import {
   FiHome,
   FiTrendingUp,
   FiCompass,
-  FiStar,
   FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
 } from 'react-icons/fi';
-import { IconType } from 'react-icons';
-import { ReactText } from 'react';
+
 import { Link as ReactLink, useParams } from "react-router-dom"
 import { BsFillBoxSeamFill } from "react-icons/bs";
 import { RiFolderSettingsFill } from "react-icons/ri"
 import "../Allcss/dashboard.css"
 import logo from "../Image/admin.jpg"
-import { FiUsers } from "react-icons/fi"
+
 import { VscGraph } from "react-icons/vsc"
 import { FaUsers } from "react-icons/fa"
 import { TbTruckDelivery } from 'react-icons/tb'
-import { MdCategory } from "react-icons/md"
+import { MdCategory,MdPersonAddAlt1 } from "react-icons/md"
 import { Linechart } from '../Components/Linegraph';
 import { Link as Reactlink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getallproducts, getallusersdata } from '../Redux/AdminReducer/action';
-import { useState } from 'react';
+
 import { ERROR, GET_ALLPRODUCTDATA, GET_ALLUSERDATA } from '../Redux/AdminReducer/actionType';
 import { Piechart } from '../Components/Piechart';
 import { RiAdminFill } from "react-icons/ri"
 import Carousel from '../Components/carousel';
+
+import { Adminsig } from '../Components/adminsignature';
+import { Adminwellness } from '../Components/adminwellness';
+import Adminvegi from '../Components/adminvegetari';
+import { Adminallproduct } from '../Components/adminAllproduct';
+import AdminAllDetails from '../Components/adminAlldetails';
+import Loading from './loading';
+import RegisterAdmin from '../Components/Registeradmin';
 
 
 
@@ -76,10 +82,12 @@ const LinkItems = [
   { name: 'Products', icon: BsFillBoxSeamFill, link: "/admin/productsdata" },
   { name: 'Sales Data', icon: FiTrendingUp, link: "/admin/salesdata" },
   { name: 'Network', icon: FiCompass, link: "/admin/network" },
-  { name: 'Favourites', icon: FiStar, link: "/admin/favourites" },
   { name: 'Manage stocks', icon: RiFolderSettingsFill, link: "/admin/handlestocks" },
   { name: 'Admin Data', icon: RiAdminFill, link: "/admin/admindata" },
+  { name: 'Register Admin', icon: MdPersonAddAlt1, link: "/admin/registeradmin" },
+
   { name: 'Settings', icon: FiSettings, link: "/admin/setting" },
+  
 
 ];
 
@@ -94,6 +102,7 @@ export default function Dashboard({ children }) {
   const dispatch = useDispatch()
   const store = useSelector(store => store.adminReducer)
 
+  
 
   function fetchdata() {
     dispatch(getallusersdata).then((res) => {
@@ -114,9 +123,12 @@ export default function Dashboard({ children }) {
 
   }
 
+
+
   useEffect(() => {
     AOS.init({ duration: 800 });
     fetchdata()
+
   }, [])
 
   let arr = []
@@ -128,7 +140,9 @@ export default function Dashboard({ children }) {
 
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box>
+      {store.isLoading?<Loading/>:
+    <Box minH="100vh" bg={'gray.100'}>
 
       <SidebarContent
         onClose={() => onClose}
@@ -156,131 +170,138 @@ export default function Dashboard({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-      <Box paddingLeft={'19%'} paddingRight={'4%'}>{place === "productsdata" ?
-        <Box>
-
-          < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
-
-        </Box> :
-        place === "salesdata" ?
-          <Box >
-            <Text data-aos="fade-left">salesdata</Text>
-
+      <Box paddingLeft={'19%'} paddingRight={'4%'}>
+        {place === "productsdata" ?
+          <Box>{store.isLoading?<Loading/>:<Box>
+            <Adminsig />
+            <Adminwellness />
+            <Adminvegi /></Box>}
           </Box> :
-          place === "network" ?
-            <Box>network</Box> :
-            place === "favourites" ?
-              <Box>favourites</Box> :
-              place === "handlestocks" ?
-                <Box>handlestocks</Box> :
-                place === "admindata" ?
+          place === "salesdata" ?
+            <Box >
+              <Text >salesdata</Text>
+
+            </Box> :
+            place === "network" ?
+              <Box>network</Box> :
+              place === "registeradmin" ?
+                <Box><RegisterAdmin/></Box> :
+                place === "handlestocks" ?
                   <Box>
-                    <Carousel />
-
+                    < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Manage Stockes</Heading>
+                    
+                    <Adminallproduct />
                   </Box> :
-                  place === "setting" ?
-                    <Box>setting</Box> :
-                    <Box >
+                  place === "admindata" ?
+                    <Box>
+                      <Carousel />
+                     
+                      <AdminAllDetails/>
+                    </Box> :
+                    place === "setting" ?
+                      <Box>setting</Box> :
+                      <Box >
 
-                      <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
-                        <Box data-aos="zoom-in" className='collect' >
-                          <Box className='innercollect'>
-                            <Box><FaUsers size="24" /></Box>
-                            <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
+                        <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
+                          <Box data-aos="zoom-in" className='collect' >
+                            <Box className='innercollect'>
+                              <Box><FaUsers size="24" /></Box>
+                              <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
+                            </Box>
+                            <Box >
+                              <Heading as={'h1'} >{store.userdata.length}</Heading>
+                            </Box>
                           </Box>
-                          <Box >
-                            <Heading as={'h1'} >{store.userdata.length}</Heading>
+                          <Box data-aos="zoom-in" className='collect' >
+                            <Box className='innercollect'>
+                              <Box b><VscGraph size="24" /></Box>
+                              <Box ml={3} mt={1} >TOTAL STOCKS</Box>
+                            </Box>
+                            <Box>
+                              <Heading as={'h1'}>{store.product.length}</Heading>
+                            </Box>
                           </Box>
-                        </Box>
-                        <Box data-aos="zoom-in" className='collect' >
-                          <Box className='innercollect'>
-                            <Box b><VscGraph size="24" /></Box>
-                            <Box ml={3} mt={1} >TOTAL STOCKS</Box>
+                          <Box data-aos="zoom-in" className='collect' >
+                            <Box className='innercollect'>
+                              <Box b><TbTruckDelivery size="24" /></Box>
+                              <Box ml={3} mt={1} >ORDERS DETAIL</Box>
+                            </Box>
+                            <Box>
+                              <Heading as={'h1'}>46</Heading>
+                            </Box>
                           </Box>
-                          <Box>
-                            <Heading as={'h1'}>{store.product.length}</Heading>
+                          <Box data-aos="zoom-in" className='collect' >
+                            <Box className='innercollect'>
+                              <Box b><MdCategory size="24" /></Box>
+                              <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
+                            </Box>
+                            <Box>
+                              <Heading as={'h1'}>{arr.length}</Heading>
+                            </Box>
                           </Box>
-                        </Box>
-                        <Box data-aos="zoom-in" className='collect' >
-                          <Box className='innercollect'>
-                            <Box b><TbTruckDelivery size="24" /></Box>
-                            <Box ml={3} mt={1} >ORDERS DETAIL</Box>
-                          </Box>
-                          <Box>
-                            <Heading as={'h1'}>46</Heading>
-                          </Box>
-                        </Box>
-                        <Box data-aos="zoom-in" className='collect' >
-                          <Box className='innercollect'>
-                            <Box b><MdCategory size="24" /></Box>
-                            <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
-                          </Box>
-                          <Box>
-                            <Heading as={'h1'}>{arr.length}</Heading>
-                          </Box>
-                        </Box>
 
-                      </Grid>
+                        </Grid>
 
 
 
-                      <br />
-                      <br />
-                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
-                      <Box data-aos="zoom-in" height={'390px'} overflow={'scroll'} boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                        <TableContainer bg={'white'}>
-                          <Table variant='striped' colorScheme='blue'>
-                            <TableCaption>Imperial to metric conversion factors</TableCaption>
-                            <Thead>
-                              <Tr>
-                                <Th>S. no.</Th>
-                                <Th>Name</Th>
-                                <Th>Category</Th>
-                                <Th >Prepration time</Th>
-                                <Th>Price</Th>
-                                <Th >Calories</Th>
-                              </Tr>
-                            </Thead>
-                            <Tbody>
-                              {store.product.map((ele, index) => <Tr key={index}>
-                                <Td>{index + 1}</Td>
-                                <Td style={{ display: 'flex' }}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt="" /> {ele.name}</Td>
-                                <Td>{ele.category}</Td>
-                                <Td>{ele.time}:00</Td>
-                                <Td>{ele.price}</Td>
-                                <Td>{ele.calories}</Td>
-                              </Tr>)}
-                            </Tbody>
-                            {/* <Tfoot>
+                        <br />
+                        <br />
+                        < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
+                        <Box data-aos="zoom-in" height={'390px'} overflow={'scroll'} boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                          <TableContainer bg={'white'}>
+                            <Table variant='striped' colorScheme='blue'>
+                              <TableCaption>Imperial to metric conversion factors</TableCaption>
+                              <Thead>
+                                <Tr>
+                                  <Th>S. no.</Th>
+                                  <Th>Name</Th>
+                                  <Th>Category</Th>
+                                  <Th >Prepration time</Th>
+                                  <Th>Price</Th>
+                                  <Th >Calories</Th>
+                                </Tr>
+                              </Thead>
+                              <Tbody>
+                                {store.product.map((ele, index) => <Tr key={index}>
+                                  <Td>{index + 1}</Td>
+                                  <Td style={{ display: 'flex' }}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt="" /> {ele.name}</Td>
+                                  <Td>{ele.category}</Td>
+                                  <Td>{ele.time}:00</Td>
+                                  <Td>{ele.price}</Td>
+                                  <Td>{ele.calories}</Td>
+                                </Tr>)}
+                              </Tbody>
+                              {/* <Tfoot>
                             <Tr>
                               <Th>To convert</Th>
                               <Th>into</Th>
                               <Th isNumeric>multiply by</Th>
                             </Tr>
                           </Tfoot> */}
-                          </Table>
-                        </TableContainer>
-                      </Box>
+                            </Table>
+                          </TableContainer>
+                        </Box>
 
 
 
-                      <br />
-                      <br />
-                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
+                        <br />
+                        <br />
+                        < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
 
-                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                        <Linechart />
-                      </Box>
-                      <br />
-                      <br />
-                      < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
+                        <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                          <Linechart />
+                        </Box>
+                        <br />
+                        <br />
+                        < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
 
-                      <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                        <Piechart />
-                      </Box>
+                        <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
+                          <Piechart />
+                        </Box>
 
-                    </Box>}
+                      </Box>}
       </Box>
+    </Box>}
     </Box>
   );
 }
@@ -422,4 +443,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
       </HStack>
     </Flex>
   );
-};
+
+ }
+
+
+
+
+
+
+

@@ -18,12 +18,15 @@ import { useEffect, useState } from 'react';
 
 import { Link as Reactlink, useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { register } from "../Redux/RegisterReducer/action";
 import { POST_REGISTER_ERROR, POST_REGISTER_SUCCESS } from "../Redux/RegisterReducer/actionTypes";
+import Loading from "./loading";
 
 
 export function Registration() {
+  const isLoading = useSelector(store => store.adminReducer.isLoading)
+
     const [firstname, setfirstname] = useState("")
     const [isErrorname, setisErrorname] = useState(false)
 
@@ -126,6 +129,7 @@ export function Registration() {
         }
     }
     return (<Box >
+        {isLoading?<Loading/>:<Box>
         <Navbar />
         <Box
             height={'300px'} backgroundColor={'#0f346c'}></Box>
@@ -254,7 +258,7 @@ export function Registration() {
                     </Flex>
                 </Box>
             </Box>
-        </Box>
+        </Box></Box>}
 
     </Box>)
 }

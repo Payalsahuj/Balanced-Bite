@@ -40,6 +40,13 @@ export default function Carousel() {
   // This can be static or loaded from a server
   const cards = [
     {
+      title: 'Balanced Bite',
+      text:
+        "We the team of ‘Balanced Bite’ not only believe in development, but we also believe in humanity, trust, and honesty. With our honest and pure souls, we always tried to provide the best quality and healthy meals to the customers.",
+      image:
+        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    },
+    {
         title: 'End to End Security',
         text:
           "A good hash function for security purposes must be a unidirectional process that uses a one-way hashing algorithm.",
@@ -54,20 +61,16 @@ export default function Carousel() {
       image:
         'https://www.cmarix.com/blog/wp-content/uploads/2019/09/Mern.jpg',
     },
-    {
-      title: 'Balanced Bite',
-      text:
-        "We the team of ‘Balanced Bite’ not only believe in development, but we also believe in humanity, trust, and honesty. With our honest and pure souls, we always tried to provide the best quality and healthy meals to the customers.",
-      image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    },
+    
   ];
 
   return (
     <Box
       position={'relative'}
-      height={'200px'}
+      height={'350px'}
       width={'full'}
+      boxShadow='rgba(0, 0, 0, 0.16) 0px 1px 4px'
+      // border={'2px solid red'}
       >
       {/* CSS files for react-slick */}
       <link
