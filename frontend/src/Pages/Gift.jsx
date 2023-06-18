@@ -8,16 +8,20 @@ import {
    Text,
    Button,
 } from "@chakra-ui/react";
+import cap from "../Image/white cap.png";
 import meal from "../images/meal-header..jpg";
 import wine from "../images/wine-header.jpg";
 import React, { useState } from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 const Gift = () => {
    const [gift, setGift] = useState("meal");
    const [quantity, setQuantity] = useState(1);
 
    return (
-      <Box paddingTop={["65px", "65px", "65px"]}>
+      <Box paddingTop={["65px", "65px", "65px"]} fontFamily="Chronicle Deck">
+         <Navbar />
          <Box position="relative" style={{ width: "100%" }}>
             <Image
                width="100%"
@@ -39,7 +43,7 @@ const Gift = () => {
             >
                <Heading
                   as="h1"
-                  size="3xl"
+                  size={["sm", "xl", "2xl", "4xl"]}
                   color="#1A237E"
                   fontFamily="Chronicle Deck"
                >
@@ -52,24 +56,37 @@ const Gift = () => {
 
          <Box
             bg="#1A237E"
-            width={["100%", "80%", "400px"]}
+            width={["50%", "50%", "80%", "400px"]}
             position="absolute"
-            top="25%"
+            top={["6%", 10, 10, "30%"]}
             left="15%"
-            height="200px"
-            p={4}
+            height={["100px", "140px", "150px", "200px"]}
+            p={[1.5, 1.8, 2, 4]}
             borderRadius="20px"
             color="white"
             zIndex={10}
             boxShadow="md"
          >
-            <Heading fontSize="2xl" mb={2}>
+            <Heading fontSize={["12px", "xl", "2xl", "4xl"]} mb={2}>
                ${gift === "meal" ? "70" : "140"} E-GIFT CARD
             </Heading>
-            <Text fontSize="sm" mt={1}>
+            <Text fontSize={["8px", "15px", "18px", "sm"]} mt={1}>
                {gift === "meal" ? "MEAL" : "WINE"} E-GIFT CARD
             </Text>
-            <Image src="" alt="logo" mt={4} />
+            <Image
+               src={cap}
+               ml={[20, 10, 10, 10]}
+               width={{ base: "30px", md: "90px", lg: "40px", xl: "70px" }}
+               alt="logo"
+            />
+            <Heading
+               ml={[0, 0, 0, -200]}
+               size={{ base: "1rem", md: "md", lg: "16px" }}
+               fontFamily="Chronicle Deck"
+            >
+               The Balanced Bite
+            </Heading>
+            {/* <Image src="" alt="logo" mt={4} /> */}
          </Box>
 
          <Box p={8}>
@@ -83,24 +100,36 @@ const Gift = () => {
                   mb={[8, 8, 0]}
                   pr={[0, 0, 8]}
                >
-                  <Tabs isLazy>
-                     <Tabs variant="soft-rounded" colorScheme="blue" mb={4}>
-                        <Tab onClick={() => setGift("meal")}>MEAL</Tab>
-                        <Tab onClick={() => setGift("wine")}>WINE</Tab>
-                     </Tabs>
-                  </Tabs>
+                  <Box mt={[9, 9, 10, "150px"]}>
+                     <Button
+                        bg={gift === "meal" ? " #1A237E" : "none"}
+                        color={gift == "meal" ? "white" : "black"}
+                        onClick={() => setGift("meal")}
+                     >
+                        MEAL
+                     </Button>
+                     <Button
+                        bg={gift === "wine" ? " #1A237E" : "none"}
+                        color={gift == "wine" ? "white" : "black"}
+                        onClick={() => setGift("wine")}
+                     >
+                        WINE
+                     </Button>
+                  </Box>
 
-                  <Tabs isLazy variant="soft-rounded" colorScheme="blue" mb={4}>
-                     <Tab>$70</Tab>
+                  <Tabs mb={4}>
+                     <Tab border={"1px solid black"}>$70</Tab>
                      <Tab>$140</Tab>
                      <Tab>$280</Tab>
                   </Tabs>
 
                   <Text>$140 is our most popular option</Text>
+                  <h1>Quantity</h1>
+                  <Button disabled ={quantity<=1} onClick={()=>setQuantity(quantity-1)}>-</Button>
+                  <Button disabled> {quantity}</Button>
 
-                  <Tabs isLazy variant="soft-rounded" colorScheme="blue" mt={4}>
-                     <Tab>Quantity: {quantity}</Tab>
-                  </Tabs>
+                  <Button onClick={()=>setQuantity(quantity+1)}>+</Button>
+                  
 
                   <Flex justify="center" mt={4}>
                      <Button bg="orange" color="white" width="100%">
@@ -132,6 +161,7 @@ const Gift = () => {
                </Box>
             </Flex>
          </Box>
+         <Footer />
       </Box>
    );
 };

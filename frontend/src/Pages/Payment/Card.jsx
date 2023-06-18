@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
@@ -16,36 +16,92 @@ import Navbar from "../../Components/Navbar";
 import load from "./loading.gif";
 
 const Card = () => {
-  const [x, setx] = useState(false);
-  const [cardData, setCardData] = useState({
-    nameOnCard: "",
-    cardType: "",
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-  });
+   const [order,setOrder] = useState([])
+   const [id,setId] = useState("")
+   const [x,setx] = useState(false);
+   const [cardData, setCardData] = useState({
+      nameOnCard: "",
+      cardType: "",
+      cardNumber: "",
+      expiryDate: "",
+      cvv: "",
+   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCardData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+   useEffect(()=>{
+      fetch("https://frail-toad-sunglasses.cyclic.app/order", {
+         method: "GET",
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `${localStorage.getItem("token")}`,
+         },
+       })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order",res)
+           setOrder(res) 
+           setId(res[res.length-1]._id)
+           console.log('id in line 54 ',id)
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+   },[])
+   const handleChange = (e) => {
+      const { name, value } = e.target;
+      setCardData((prev) => ({
+         ...prev,
+         [name]: value,
+      }));
+   };
 
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setx(true);
-    setTimeout(() => {
-      navigate("/payment/summary");
-    }, 4000);
-    console.log(cardData);
-  };
+   const navigate = useNavigate();
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      setx(true);
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/update/${id}`, {
+         method: "PATCH",
+         body:JSON.stringify(cardData),
+         headers: {
+           "Content-Type": "application/json",
+          
+           Authorization: `${localStorage.getItem("token")}`,
+         },
+       })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order",res)
+           
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
+         
+      setTimeout(() => {
+         navigate("/payment/complete");
+      }, 4000);
+      console.log(cardData);
+   };
 
-  const handleCancel = (e) => {
-    navigate("/");
-  };
+   const handleCancel = (e)=>{
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
+         method: "DELETE",
+     
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `${localStorage.getItem("token")}`,
+         },
+       })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order",res)
+           
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
+      navigate('/')
+         }  
+
 
   return (
     <Box

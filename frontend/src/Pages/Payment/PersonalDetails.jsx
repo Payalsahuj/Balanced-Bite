@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -16,7 +16,10 @@ import Navbar from "../../Components/Navbar";
 import load from "./loading.gif";
 
 const PersonalDetails = () => {
-  const [stage, setStage] = useState(1);
+
+   const [order, setOrder] = useState([]);
+   const [id, setId] = useState("");
+
 
   const [detail, setDetail] = useState({
     name: "",
@@ -38,18 +41,62 @@ const PersonalDetails = () => {
   const [x, setx] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setx(true);
-    setTimeout(() => {
-      navigate("/payment/card");
-    }, 3000);
-    console.log(detail);
-  };
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      setx(true);
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/add`, {
+         method: "POST",
+         body: JSON.stringify({"address":detail}),
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `${localStorage.getItem("token")}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order", res);
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
 
-  const handleCancel = (e) => {
-    navigate("/");
-  };
+      console.log(detail);
+      setTimeout(() => {
+         // navigate("/payment/card");
+         setx(false);
+      }, 3000);
+   };
+
+   const handleCancel = (e) => {
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
+         method: "DELETE",
+
+         headers: {
+            //   "Content-Type": "application/json",
+            Authorization: `${localStorage.getItem("token")}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order", res);
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
+      alert("Your Order Canceled");
+      navigate("/");
+      setDetail({
+         name: "",
+         email: "",
+         Address: "",
+         city: "",
+         nation: "",
+         contact: "",
+         state: "",
+      });
+   };
+
+
   return (
     <Box backgroundColor={"#0f346c"}>
       <Navbar />
@@ -77,12 +124,15 @@ const PersonalDetails = () => {
             borderTopLeftRadius={"50px"}
             padding={["8px", "10px", "20px", "50px"]}
           >
+
+ 
             <Box
             // maxWidth="800px"
             // mx="auto"
             // px={["1rem", "2rem", "9rem"]}
             // py={["20%", 15, 20, "5%"]}
             >
+
               <Heading
                 fontFamily={"heading"}
                 color={"#002C9B"}
@@ -105,18 +155,21 @@ const PersonalDetails = () => {
                   />
                 </FormControl>
 
-                <FormControl>
-                  <FormLabel>Email Address</FormLabel>
-                  <Input
-                    type="text"
-                    required
-                    backgroundColor={"#c1d6f3"}
-                    value={detail.email}
-                    name="email"
-                    placeholder="User's email"
-                    onChange={handleChange}
-                  />
-                </FormControl>
+              
+
+                  <FormControl>
+                     <FormLabel>Email Address</FormLabel>
+                     <Input
+                        type="text"
+                        required
+                        backgroundColor={"#c1d6f3"}
+                        value={detail.email}
+                        name="email"
+                        placeholder="User's email"
+                        onChange={handleChange}
+                     />
+                  </FormControl>
+
 
                 <FormControl>
                   <FormLabel>Address</FormLabel>
