@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
    Box,
    Button,
@@ -14,7 +14,8 @@ import Navbar from "../../Components/Navbar";
 import load from "./loading.gif";
 
 const PersonalDetails = () => {
-   const [stage, setStage] = useState(1);
+   const [order, setOrder] = useState([]);
+   const [id, setId] = useState("");
 
    const [detail, setDetail] = useState({
       name: "",
@@ -36,18 +37,81 @@ const PersonalDetails = () => {
    const [x, setx] = useState(false);
    const navigate = useNavigate();
 
+   // useEffect(() => {
+   //    fetch("https://frail-toad-sunglasses.cyclic.app/payment", {
+   //       method: "GET",
+   //       headers: {
+   //          "Content-Type": "application/json",
+   //          Authorization: `${localStorage.getItem("token")}`,
+   //       },
+   //    })
+   //       .then((res) => res.json())
+   //       .then((res) => {
+   //          console.log("order", res);
+   //          setOrder(res);
+   //          setId(res[res.length - 1]._id);
+   //          console.log("id in line 54 ", id);
+   //       })
+   //       .catch((err) => {
+   //          console.log(err);
+   //       });
+   // }, []);
+
    const handleSubmit = (e) => {
       e.preventDefault();
       setx(true);
-      setTimeout(() => {
-         navigate("/payment/card");
-      }, 3000);
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/add`, {
+         method: "POST",
+         body: JSON.stringify({"address":detail}),
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `${localStorage.getItem("token")}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order", res);
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
+
       console.log(detail);
+      setTimeout(() => {
+         // navigate("/payment/card");
+         setx(false);
+      }, 3000);
    };
 
    const handleCancel = (e) => {
+      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
+         method: "DELETE",
+
+         headers: {
+            //   "Content-Type": "application/json",
+            Authorization: `${localStorage.getItem("token")}`,
+         },
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log("order", res);
+         })
+         .catch((err) => {
+            console.log(err.message);
+         });
+      alert("Your Order Canceled");
       navigate("/");
+      setDetail({
+         name: "",
+         email: "",
+         Address: "",
+         city: "",
+         nation: "",
+         contact: "",
+         state: "",
+      });
    };
+
    return (
       <Box>
          <Navbar />
@@ -62,9 +126,7 @@ const PersonalDetails = () => {
                px={["1rem", "2rem", "9rem"]}
                py={["20%", 15, 20, "5%"]}
             >
-            <Heading>
-               Enter Your delivery Address
-            </Heading>
+               <Heading>Enter Your delivery Address</Heading>
                <form spacing={4} as="form" onSubmit={handleSubmit}>
                   <FormControl>
                      <FormLabel>Name</FormLabel>
