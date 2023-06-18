@@ -17,14 +17,14 @@ import load from "./loading.gif";
 
 const PersonalDetails = () => {
 
-   const [order, setOrder] = useState([]);
+   const [order, setOrder] = useState({});
    const [id, setId] = useState("");
 
 
   const [detail, setDetail] = useState({
     name: "",
     email: "",
-    Address: "",
+    address: "",
     city: "",
     nation: "",
     contact: "",
@@ -41,12 +41,30 @@ const PersonalDetails = () => {
   const [x, setx] = useState(false);
   const navigate = useNavigate();
 
+useEffect(()=>{
+   fetch('https://frail-toad-sunglasses.cyclic.app/order',{
+      method:"GET",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `${localStorage.getItem("token")}`,
+      },
+   })
+   .then((res)=>res.json())
+   .then((res)=>setOrder(res[res.length-1])
+   )
+   .catch((err)=>console.log(err))
+},[])
+
+console.log("order in line 58",order,order._id)
+
+
+
    const handleSubmit = (e) => {
       e.preventDefault();
       setx(true);
-      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/add`, {
-         method: "POST",
-         body: JSON.stringify({"address":detail}),
+      fetch(`https://frail-toad-sunglasses.cyclic.app/order/update/${order?._id}`, {
+         method: "PATCH",
+         body: JSON.stringify({address:detail}),
          headers: {
             "Content-Type": "application/json",
             Authorization: `${localStorage.getItem("token")}`,
@@ -54,21 +72,21 @@ const PersonalDetails = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log("order", res);
+            console.log("order in line 75", res);
          })
          .catch((err) => {
-            console.log(err.message);
+            console.log(err);
          });
 
       console.log(detail);
       setTimeout(() => {
-         // navigate("/payment/card");
+         navigate("/payment/card");
          setx(false);
       }, 3000);
    };
 
    const handleCancel = (e) => {
-      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
+      fetch(`https://frail-toad-sunglasses.cyclic.app/order/deleteallorder`, {
          method: "DELETE",
 
          headers: {
@@ -88,7 +106,7 @@ const PersonalDetails = () => {
       setDetail({
          name: "",
          email: "",
-         Address: "",
+         address: "",
          city: "",
          nation: "",
          contact: "",
@@ -177,8 +195,8 @@ const PersonalDetails = () => {
                     type="text"
                     backgroundColor={"#c1d6f3"}
                     required
-                    value={detail.Address}
-                    name="Address"
+                    value={detail.address}
+                    name="address"
                     placeholder="User's permanent address"
                     onChange={handleChange}
                   />
