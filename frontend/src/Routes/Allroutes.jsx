@@ -17,6 +17,9 @@ import Payment from "../Pages/Payment/Payment"
 
 import Pricing from "../Pages/Pricing"
 import Dashboard from "../Pages/Dashboard"
+import PrivateRoute from "../AdminPrivateRoute/privateroute"
+import { Updateproductadmin } from "../Components/updateproductadmin"
+import Loading from "../Pages/loading"
 
 
 
@@ -38,12 +41,13 @@ export const AllRoutes=()=>{
                 <Route path="/products/:id" element={<SingleProduct/>}/>
 
 
-                <Route path="/admin" element={<Admin/>}/>
-                <Route path="/admin/:place" element={<Admin/>}/>
+                <Route path="/admin" element={<PrivateRoute><Admin/></PrivateRoute>}/>
+                <Route path="/admin/:place" element={<PrivateRoute><Admin/></PrivateRoute>}/>
+                <Route path="/admin/handlestocks/:id" element={<PrivateRoute><Updateproductadmin/></PrivateRoute>}/>
+
 
                 <Route path="/pricing" element={<Pricing/>}/>
-
-
+                <Route path="/loading" element={<Loading/>}/>
             </Routes>
         </div>
     )
