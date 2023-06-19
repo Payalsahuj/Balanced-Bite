@@ -120,6 +120,11 @@ const Card = () => {
       // borderRadius={"10%"}
       // box-shadow={" rgba(0, 0, 0, 0.35) 0px 5px 15px"}
       backgroundColor={"#0f346c"}
+      height={"100vh"}
+      margin={"auto"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
     >
       <Navbar />
       {x ? (

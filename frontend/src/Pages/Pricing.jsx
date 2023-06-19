@@ -190,7 +190,7 @@ function Pricing() {
          <br />
          <br />
          <Box
-            width={["90%", "90%", "80%", "70%"]}
+            width={["90%", "90%", "80%", "75%"]}
             margin={"auto"}
             padding={"10px"}
          >
@@ -320,6 +320,7 @@ function Pricing() {
                         color={"#6A6D75"}
                         fontSize={"lg"}
                         fontWeight={"bold"}
+                        noOfLines={11}
                      >
                         {cartProduct?.about_dish}
                      </Text>

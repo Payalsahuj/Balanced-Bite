@@ -41,7 +41,7 @@ function Vegetarian() {
     <Box>
       <SimpleGrid columns={[1, 2, 3, 3]} spacing={5}>
         {product &&
-          product.map((el) => (
+          product?.map((el) => (
             <Flex>
               <Box
                 textAlign={"left"}
@@ -62,7 +62,7 @@ function Vegetarian() {
                   paddingRight={"20px"}
                 >
                   <Heading size={"md"} noOfLines={1}>{el.name}</Heading>
-                  <Box marginTop={"10px"}>{el.title}</Box>
+                  <Box marginTop={"10px"} noOfLines={1}>{el.title}</Box>
                   <Box
                     bgColor={el.time%2 == 0? "#1EB389" : "#002C9B"}
                     color={"#FFFFFF"}

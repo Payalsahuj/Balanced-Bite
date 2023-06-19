@@ -117,7 +117,15 @@ console.log("order in line 58",order,order._id)
 
 
   return (
-    <Box backgroundColor={"#0f346c"}>
+    <Box backgroundColor={"#0f346c"}
+    
+    margin={"auto"}
+    //display={"flex"}
+    //justifyContent={"center"}
+    //alignItems={"center"}
+    //border={"5px solid red"}
+    >
+      
       <Navbar />
       {x ? (
         <Box p={"10% 40%"} m={"auto"} textAlign={"center"}>
@@ -143,6 +151,7 @@ console.log("order in line 58",order,order._id)
             borderBottomRightRadius={"50px"}
             borderTopLeftRadius={"50px"}
             padding={["8px", "10px", "20px", "50px"]}
+            marginBottom={"50px"}
           >
 
  
@@ -308,6 +317,7 @@ console.log("order in line 58",order,order._id)
       <br />
       <br />
       <br />
+      <Box height={"300px"}></Box>
     </Box>
   );
 };
