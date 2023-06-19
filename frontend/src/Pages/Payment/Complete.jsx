@@ -15,6 +15,10 @@ const Complete = () => {
       // boxShadow="md"
 
       bg={"#0f346c"}
+      height={"100vh"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
     >
       <br />
       <br />

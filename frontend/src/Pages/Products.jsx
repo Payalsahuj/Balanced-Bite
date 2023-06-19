@@ -46,6 +46,7 @@ function Products() {
                     fontSize={["14px", "16px", "22px", "18px"]}
                     fontWeight={"bold"}
                     fontFamily={"sans-serif"}
+                    
                   >
                     2 SERVING Signature
                   </Tab>
@@ -55,6 +56,7 @@ function Products() {
                     fontSize={["14px", "16px", "22px", "18px"]}
                     fontWeight={"bold"}
                     fontFamily={"sans-serif"}
+                    
                   >
                     2 SERVING Vegetarian
                   </Tab>
@@ -64,6 +66,7 @@ function Products() {
                     fontSize={["14px", "16px", "22px", "18px"]}
                     fontWeight={"bold"}
                     fontFamily={"sans-serif"}
+                    
                   >
                     2 SERVING Wellness
                   </Tab>
@@ -73,8 +76,9 @@ function Products() {
                     fontSize={["14px", "16px", "22px", "18px"]}
                     fontWeight={"bold"}
                     fontFamily={"sans-serif"}
+                    
                   >
-                    4 SERVING Signature for Four
+                    4 SERVING Signature
                   </Tab>
                 </Box>
                 <Box>
@@ -82,8 +86,9 @@ function Products() {
                     fontSize={["14px", "16px", "22px", "18px"]}
                     fontWeight={"bold"}
                     fontFamily={"sans-serif"}
+                    
                   >
-                    WEEKLY OPTIONS Add-Ons
+                    WEEKLY OPTIONS
                   </Tab>
                 </Box>
               </SimpleGrid>

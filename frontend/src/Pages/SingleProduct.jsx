@@ -113,7 +113,7 @@ function SingleProduct() {
     <Box>
       <Navbar/>
     
-    <Box width={["90%", "90%", "90%", "80%"]} margin={"auto"}>
+    <Box width={["90%", "90%", "90%", "85%"]} margin={"auto"}>
       <br />
       <br />
       <br />
@@ -162,7 +162,7 @@ function SingleProduct() {
           >
             2 Servings
           </Text>
-          <Heading fontFamily={"serif"} fontSize={"2xl"} marginTop={"25px"}>
+          <Heading fontFamily={"serif"} fontSize={"2xl"} marginTop={"20px"}>
            From the Test Kitchen
           </Heading>
           <Text
@@ -174,7 +174,6 @@ function SingleProduct() {
             {sdata?.about_dish}
           </Text>
           <br />
-          <br />
           <Flex gap={"30px"} alignItems={"center"}>
             <Button colorScheme={"green"} variant={"solid"} onClick={handleAddtocart}>
               GET COOKING
@@ -184,20 +183,15 @@ function SingleProduct() {
             </Button> */}
           </Flex>
           <br />
-          <br />
           <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Heading fontSize={"xl"}>Nutrition</Heading>
             <Text color={"#6A6D75"}>PER SERVING</Text>
           </Flex>
           <br />
-          <hr />
-          <br />
           <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Heading fontSize={"xl"}>Calories</Heading>
             <Text color={"#6A6D75"}>{sdata?.calories} Cals</Text>
           </Flex>
-          <br />
-          <hr />
           <br />
           <Box
             color={"#002C9B"}
