@@ -124,10 +124,11 @@ function Home() {
                         <Text>Get started for as little as <b>$7.99 per serving</b> </Text>
                     </Center>
                     <br />
+                    <Link to="/pricing">
                     <Button _hover={{ transform: 'scale(1.1)' }} bg='#1A237E' color={'white'} borderRadius='30px 30px 30px 30px' padding='0px 50px' size='lg'>
                         See Plans
                     </Button>
-
+                    </Link>
                     <Box mt="8%">
                         <Heading color={'#1A237E'} fontFamily="Chronicle Deck" >CHOOSE FROM</Heading>
                         <Heading color={'#00a0df'} fontSize={'47px'} fontFamily="Chronicle Deck" >70+ weekly options</Heading>
@@ -143,9 +144,11 @@ function Home() {
                         </Grid>
                     </Box>
                     <Center m='40px 0px' color={'#1A237E'} >
+                        <Link to="/products">
                         <Button _hover={{ transform: 'scale(1.1)' }} borderRadius='30px 30px 30px 30px' padding='0px 50px' size='lg' variant='outline' colorScheme='#1A237E'>
                             BROWSE OUR MENU
                         </Button>
+                        </Link>
                     </Center>
 
                 </Box>
@@ -176,9 +179,11 @@ function Home() {
                         CARBON NEUTRAL COMPANY
                     </Heading>
                     <br />
+                    <Link to="/gift">
                     <Button _hover={{ transform: 'scale(1.1)' }} bg='white' color={'#1A237E'} borderRadius='30px 30px 30px 30px' padding='25px 40px' size='sm' fontFamily="Chronicle Deck">
                         LEARN MORE
                     </Button>
+                    </Link>
                 </Box>
             </Box>
 
@@ -193,9 +198,11 @@ function Home() {
 
                     <Text fontFamily="Chronicle Deck">for as little as $7.99 per serving</Text>
                     <br />
+                    <Link to="/pricing">
                     <Button _hover={{ transform: 'scale(1.1)' }} bg='#1A237E' color={'white'} borderRadius='30px 30px 30px 30px' padding='0px 50px' size='lg' fontFamily="Chronicle Deck">
                         See Plans
                     </Button>
+                    </Link>
                 </Box>
             </Box>
 
