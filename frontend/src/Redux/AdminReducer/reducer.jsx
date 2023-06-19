@@ -1,4 +1,4 @@
-import { ERROR, GET_ALLPRODUCTDATA, GET_ALLUSERDATA, LOADING, POST_ADMINLOGIN_SUCCESS, POST_ADMINREGISTER_SUCCESS } from "./actionType"
+import { ADD_PRODUCT, DELETE_PRODUCT, ERROR, GET_ALLPRODUCTDATA, GET_ALLUSERDATA, LOADING, POST_ADMINLOGIN_SUCCESS, POST_ADMINREGISTER_SUCCESS, UPDATE_PRODUCT } from "./actionType"
 
 
 const initialstate={
@@ -28,6 +28,15 @@ const reducer=(state=initialstate,action)=>{
     }
     case GET_ALLPRODUCTDATA:{
         return {...state,product:action.payload,isLoading:false}
+    }
+    case ADD_PRODUCT:{
+        return {...state,product:[...state.product,action.payload],isLoading:false}
+    }
+    case UPDATE_PRODUCT:{
+        return {...state,isLoading:false}
+    }
+    case DELETE_PRODUCT:{
+        return {...state,isLoading:false}  
     }
     default:{
         return {...state}

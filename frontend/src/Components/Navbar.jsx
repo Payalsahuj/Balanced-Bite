@@ -262,8 +262,8 @@ import { Link as Reactlink } from 'react-router-dom';
       href:"/products"
     },
     {
-      label: 'PLANS',
-      href:"#"
+      label: 'PRICING',
+      href:"/pricing"
     },
     {
       label: 'WINE',
@@ -271,12 +271,8 @@ import { Link as Reactlink } from 'react-router-dom';
     },
     {
       label: 'GIFTS',
-      href: '#',
-    },
-    {
-        label: 'MARKET',
-        href: '#',
-      },
+      href: '/gift',
+    }
   ];
 
 

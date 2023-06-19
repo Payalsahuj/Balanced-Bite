@@ -23,14 +23,17 @@ import { useEffect, useState } from 'react';
 import {  Link as Reactlink, useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/RegisterReducer/action";
 import { POST_LOGIN_SUCCESS, POST_REGISTER_ERROR } from "../Redux/RegisterReducer/actionTypes";
+import Loading from "./loading";
 
 
 
 
 export function Login(){
+  const isLoading = useSelector(store => store.adminReducer.isLoading)
+
     const [email, setemail] = useState("")
     const [isErroremail, setisErroremail] = useState(false)
 
@@ -121,6 +124,7 @@ export function Login(){
 
 
     return(<Box >
+        {isLoading?<Loading/>:<Box>
         <Navbar/>
         <Box
             height={'300px'} backgroundColor={'#0f346c'}></Box>
@@ -203,6 +207,6 @@ export function Login(){
                     </Flex>
                 </Box>
             </Box>
-        </Box>
+        </Box></Box>}
     </Box>)
 }
