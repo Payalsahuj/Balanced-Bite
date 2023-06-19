@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IconButton,
   Avatar,
@@ -46,7 +46,7 @@ import {
   FiChevronDown,
 } from 'react-icons/fi';
 
-import { Link as ReactLink, useParams } from "react-router-dom"
+import { Link as ReactLink, useNavigate, useParams } from "react-router-dom"
 import { BsFillBoxSeamFill } from "react-icons/bs";
 import { RiFolderSettingsFill } from "react-icons/ri"
 import "../Allcss/dashboard.css"
@@ -377,7 +377,12 @@ const NavItem = ({ icon, children, link, ...rest }) => {
 
 
 const MobileNav = ({ onOpen, ...rest }) => {
-
+  
+const navigate=useNavigate()
+ function handlelogout(){
+  localStorage.removeItem("admintoken")
+  navigate("/")
+ }
 
 
   return (
@@ -444,7 +449,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={handlelogout}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
