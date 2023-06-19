@@ -28,7 +28,7 @@ function Products() {
           marginTop={"80px"}
           color={"#002C9B"}
           fontWeight={"bold"}
-          fontSize={"62px"}
+          fontSize={["30px","40px","45px","52px"]}
           fontFamily={"serif"}
           font
         >
