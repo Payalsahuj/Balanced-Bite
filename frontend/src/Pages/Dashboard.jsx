@@ -73,6 +73,8 @@ import { Adminallproduct } from '../Components/adminAllproduct';
 import AdminAllDetails from '../Components/adminAlldetails';
 import Loading from './loading';
 import RegisterAdmin from '../Components/Registeradmin';
+import { Salsedata } from '../Components/salesdata';
+import { AdminNetwork } from '../Components/Network';
 
 
 
@@ -85,11 +87,10 @@ const LinkItems = [
   { name: 'Manage stocks', icon: RiFolderSettingsFill, link: "/admin/handlestocks" },
   { name: 'Admin Data', icon: RiAdminFill, link: "/admin/admindata" },
   { name: 'Register Admin', icon: MdPersonAddAlt1, link: "/admin/registeradmin" },
-
-  { name: 'Settings', icon: FiSettings, link: "/admin/setting" },
   
 
 ];
+  // { name: 'Settings', icon: FiSettings, link: "/admin/setting" },
 
 
 
@@ -179,11 +180,17 @@ export default function Dashboard({ children }) {
           </Box> :
           place === "salesdata" ?
             <Box >
-              <Text >salesdata</Text>
+    < Heading as='h5' fontSize={'30px'} mb={'9px'} textAlign={'left'}>Sales data</Heading>
+
+              <Salsedata/>
 
             </Box> :
             place === "network" ?
-              <Box>network</Box> :
+              <Box>
+                <AdminNetwork/>
+                <br/>
+                <Salsedata/>
+                </Box> :
               place === "registeradmin" ?
                 <Box><RegisterAdmin/></Box> :
                 place === "handlestocks" ?
@@ -198,8 +205,8 @@ export default function Dashboard({ children }) {
                      
                       <AdminAllDetails/>
                     </Box> :
-                    place === "setting" ?
-                      <Box>setting</Box> :
+                    // place === "setting" ?
+                    //   <Box></Box> :
                       <Box >
 
                         <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>

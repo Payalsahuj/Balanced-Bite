@@ -1,7 +1,8 @@
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 
 import {  useSelector } from "react-redux";
-
+import AOS from "aos"
+import "aos/dist/aos.css"
 import { useEffect, useState } from "react";
 import Loading from "../Pages/loading";
 
@@ -30,16 +31,17 @@ function Adminvegi() {
   }
 
   useEffect(()=>{
+    AOS.init({ duration: 800 });
     getData()
   },[])
 
   return (<Box>{isLoading?<Loading/>:
-    <Box>
+    <Box data-aos="zoom-in">
          <br/>
         <br/>
         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Vegetarian products</Heading>
 
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing={5} data-aos="zoom-in">
         {veg.map((el) => (
             <Flex>
               <Box
