@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner, Box, Img, position } from '@chakra-ui/react';
-import cap from "../Image/white cap.png"
+import cap from "../Image/cap black.png"
 
 const SpinnerWithLetter = ({ letter, ...props }) => (
   <Box display="flex" justifyContent="center" alignItems="center">
@@ -19,7 +19,7 @@ const SpinnerWithLetter = ({ letter, ...props }) => (
   </Box>
 );
 
-export default function Loading() {
+export default function LoadingBlack() {
   return (
     <div
       style={{

@@ -4,7 +4,8 @@ import {  useSelector } from "react-redux";
 import AOS from "aos"
 import "aos/dist/aos.css"
 import { useEffect, useState } from "react";
-import Loading from "../Pages/loading";
+import LoadingBlack from "../Pages/Loadingblack";
+
 
 
 
@@ -35,7 +36,7 @@ function Adminvegi() {
     getData()
   },[])
 
-  return (<Box>{isLoading?<Loading/>:
+  return (<Box>{isLoading?<LoadingBlack/>:
     <Box data-aos="zoom-in">
          <br/>
         <br/>
