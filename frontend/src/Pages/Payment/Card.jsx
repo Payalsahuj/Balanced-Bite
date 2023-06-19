@@ -14,6 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar";
 import load from "./loading.gif";
+import Loading from "../loading";
 
 const Card = () => {
    const [order,setOrder] = useState({})
@@ -123,7 +124,8 @@ const Card = () => {
       <Navbar />
       {x ? (
         <Box p={"10% 40%"} m={"auto"} textAlign={"center"}>
-          <img src={load} alt="Gif is running" backgroundColor="none" />
+          {/* <img src={load} alt="Gif is running" backgroundColor="none" /> */}
+        <Loading/>
         </Box>
       ) : (
         <Box>
