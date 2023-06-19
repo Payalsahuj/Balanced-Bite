@@ -4,7 +4,8 @@ import "aos/dist/aos.css"
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Loading from "../Pages/loading";
+import LoadingBlack from "../Pages/Loadingblack";
+
 
 
 
@@ -32,7 +33,7 @@ export const Adminsig=()=>{
         AOS.init({ duration: 800 });
         getDatasig()
       }, [])
-    return (     <Box>{isLoading?<Loading/>:<Box data-aos="zoom-in">
+    return (     <Box>{isLoading?<LoadingBlack/>:<Box data-aos="zoom-in">
         < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Signature products</Heading>
 

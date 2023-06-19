@@ -71,10 +71,11 @@ import { Adminwellness } from '../Components/adminwellness';
 import Adminvegi from '../Components/adminvegetari';
 import { Adminallproduct } from '../Components/adminAllproduct';
 import AdminAllDetails from '../Components/adminAlldetails';
-import Loading from './loading';
+
 import RegisterAdmin from '../Components/Registeradmin';
 import { Salsedata } from '../Components/salesdata';
 import { AdminNetwork } from '../Components/Network';
+import LoadingBlack from './Loadingblack';
 
 
 
@@ -142,7 +143,7 @@ export default function Dashboard({ children }) {
 
   return (
     <Box>
-      {store.isLoading?<Loading/>:
+      {store.isLoading?<LoadingBlack/>:
     <Box minH="100vh" bg={'gray.100'}>
 
       <SidebarContent
@@ -173,7 +174,7 @@ export default function Dashboard({ children }) {
       </Box>
       <Box paddingLeft={'19%'} paddingRight={'4%'}>
         {place === "productsdata" ?
-          <Box>{store.isLoading?<Loading/>:<Box>
+          <Box>{store.isLoading?<LoadingBlack/>:<Box>
             <Adminsig />
             <Adminwellness />
             <Adminvegi /></Box>}

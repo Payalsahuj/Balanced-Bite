@@ -26,7 +26,8 @@ import Navbar from "../Components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/RegisterReducer/action";
 import { POST_LOGIN_SUCCESS, POST_REGISTER_ERROR } from "../Redux/RegisterReducer/actionTypes";
-import Loading from "./loading";
+import LoadingBlack from "./Loadingblack";
+
 
 
 
@@ -124,7 +125,7 @@ export function Login(){
 
 
     return(<Box >
-        {isLoading?<Loading/>:<Box>
+        {isLoading?<LoadingBlack/>:<Box>
         <Navbar/>
         <Box
             height={'300px'} backgroundColor={'#0f346c'}></Box>

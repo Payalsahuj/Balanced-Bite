@@ -21,7 +21,8 @@ import Navbar from "../Components/Navbar";
 import { useDispatch, useSelector } from "react-redux"
 import { register } from "../Redux/RegisterReducer/action";
 import { POST_REGISTER_ERROR, POST_REGISTER_SUCCESS } from "../Redux/RegisterReducer/actionTypes";
-import Loading from "./loading";
+
+import LoadingBlack from "./Loadingblack";
 
 
 export function Registration() {
@@ -129,7 +130,7 @@ export function Registration() {
         }
     }
     return (<Box >
-        {isLoading?<Loading/>:<Box>
+        {isLoading?<LoadingBlack/>:<Box>
         <Navbar />
         <Box
             height={'300px'} backgroundColor={'#0f346c'}></Box>
