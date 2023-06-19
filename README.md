@@ -98,7 +98,8 @@
 
 
 
-#  Balanced Bite
+##  Balanced Bite
+Balanced Bite is a meal kit service that delivers 2–4 recipes to your door each week, along with all the preportioned ingredients you need to make the meals. It's a User-friendly Full Stack website made with is a span of 5 days.
 
 
 ## Team manager:- Sumit Beniwal(IA).
