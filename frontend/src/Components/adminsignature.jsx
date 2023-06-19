@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-
+import AOS from "aos"
+import "aos/dist/aos.css"
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -28,14 +29,14 @@ export const Adminsig=()=>{
           })
       }
       useEffect(() => {
-        
+        AOS.init({ duration: 800 });
         getDatasig()
       }, [])
-    return (     <Box>{isLoading?<Loading/>:<Box>
+    return (     <Box>{isLoading?<Loading/>:<Box data-aos="zoom-in">
         < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Product details</Heading>
         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Signature products</Heading>
 
-        <Box>
+        <Box data-aos="zoom-in">
           <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
             {
               sig.map((el) => (

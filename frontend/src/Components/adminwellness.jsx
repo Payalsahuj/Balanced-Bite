@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react";
 import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
-
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 export const Adminwellness=()=>{
     const [well,setwell]=useState([])
@@ -24,16 +25,17 @@ export const Adminwellness=()=>{
   }
 
   useEffect(()=>{
+    AOS.init({ duration: 800 });
     getData()
   },[])
 
   return (
-    <Box>
+    <Box data-aos="zoom-in">
         <br/>
         <br/>
         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Wellness products</Heading>
 
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing={5} data-aos="zoom-in">
         {well.map((el) => (
             <Flex>
               <Box
