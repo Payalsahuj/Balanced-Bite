@@ -130,10 +130,10 @@ In Register of admin section, admin can register any user account to give the ac
 # Products Section
 ![Screenshot (1370)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/faffd885-d90e-4055-9f5a-3466a982b1a8)
 # Single Item Details Section
-![Screenshot (1371)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/9ebc61cc-0c16-414d-a18c-01d95523c109)
+![Screenshot (1391)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/7f250711-9c06-4142-aa25-ed99bc9ba89c)
 
 # Planning Order Section
-![Screenshot (1372)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/90df775c-6f89-438e-84a6-88eae485c9cb)
+![Screenshot (1393)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/1c4c9bbd-ea33-4644-b9e0-e6e0e2103bbf)
 
 # Personal info Section
 ![Screenshot (1373)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/6fbe163f-d208-4dc5-a7eb-e101e94ceb33)
@@ -159,7 +159,8 @@ In Register of admin section, admin can register any user account to give the ac
 # Manage Stock Section
 ![Screenshot (1384)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/b5baad7e-1ff3-4fea-b943-656e9aa541dd)
 ![Screenshot (1385)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/273f6b59-1018-4cc9-b150-5321a6c49bef)
-![Screenshot (1386)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/bd38cccf-1853-4031-b1c9-81addfdba129)
+![Screenshot (1392)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/1517d757-0157-4c84-91ca-7993249e38eb)
+
 # Admin Data Section
 ![Screenshot (1388)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/a323f8aa-9044-40df-8dfe-b05cbb445595)
 ![Screenshot (1389)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/b9090518-674a-4f15-8544-676fbd2de5f7)
