@@ -99,11 +99,16 @@ Balanced Bite is a meal kit service that delivers 2–4 recipes to your door eac
 ## Team member 1:- Payal sahu (Team lead)
 She is responsible for making the Landing page, Signup/Signin page and the entire Admin section of the website.
 From landing page the user get the first intraction to the website, it's not only the frist intrection but also it work as the root directory, from where the user can change the path.
+
 Signup/Signin both of the pages having form validations and smooth connect to backend, where all the data  of the users are passed through Mongodb (Backend) in a very secure and safe manner.
+
 Admin page is also have Signup/Signin sections with form validation, which was controlled by backend (user can not enter without having admin tokens), it is responsible for whole cntrole over the user side of the website. It consists of Dashboard, Products ,Sales data, Network, Manage stocks, Admin data and registration sections.
+
 Dashboard is responsible for providing all the datas of the website. 
+
 In a product section admin can see all the products of website according to its categories.
-In a sales data section admin can see the information about the sales of product.
+
+In a sales data section admin can see the information about the sales of products.
 
 ## Team member 2:- Vinay Kumar Hatwar
 
