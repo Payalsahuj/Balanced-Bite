@@ -25,19 +25,18 @@ export const Adminallproduct = () => {
  
 
   return (<Box>
-    <Box display={'flex'}>
-                    < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Manage Stock</Heading>
 
+    <br />
+    <Box backgroundColor="white" borderRadius={'10px'} boxShadow='rgba(0, 0, 0, 0.16) 0px 1px 4px' p='25px 25px'>
+      < Heading as='h2' fontSize={'20px'} textAlign={'left'}>Apply CRUD operations on product</Heading>
+      <br />
+      <Box style={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)' }} gap={10}>
+        <Button size={'lg'} backgroundColor={'#c1d6f3'} onClick={handleaddbutton}>CLICK <span style={{color:'red',padding:'0px 5px'}}><u>HERE</u> </span> TO ADD MEALS</Button>
 
-        <Button size={'sm'}  ml='10px' variant={'outline'} _hover={{backgroundColor:'green',color:'white'}} backgroundColor={'#c1d6f3'} onClick={handleaddbutton}   style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  }}>ADD MEALS</Button></Box>
+        <Button size={'lg'} backgroundColor={'#c1d6f3'}  disabled={true}>FOR UPDATE AND DELETE THE PRODUCTS CLICK ON THE SELECTED PRODUCT</Button>
 
-{/*       
-    </Box> */}
+      </Box>
+    </Box>
     <Box w={'100%'} mt='15px' display={displayadd ? '' : 'none'} boxShadow='rgba(0, 0, 0, 0.16) 0px 1px 4px' backgroundColor="white" borderRadius={'10px'} p='30px 25px'>
       <Addproductadmin/>
     </Box>
@@ -47,7 +46,7 @@ export const Adminallproduct = () => {
    
 
 
-    <Box mt='2%'>
+    <Box mt='6%'>
       <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
         {
           store.product.map((el) => (

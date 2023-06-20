@@ -40,7 +40,7 @@ export const Adminsig=()=>{
         <Box data-aos="zoom-in">
           <SimpleGrid columns={[1, 2, 3, 4]} spacing={5}>
             {
-              sig?.map((el) => (
+              sig.map((el) => (
                 <Flex>
                   <Box
                     textAlign={"left"}

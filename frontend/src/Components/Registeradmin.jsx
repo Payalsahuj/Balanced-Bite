@@ -11,7 +11,6 @@ import {
     Image,
     Textarea,
     useToast,
-    Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios'
@@ -76,18 +75,11 @@ export default function RegisterAdmin() {
     }
 
     return (
-        <Box backgroundColor={'#0f346c'} color={'white'} borderRadius={'10px'}>
-            <br/>
-            <Heading fontFamily={'sans-serif'} fontSize={'2xl'} margin={'auto'}><u>Register Admin Account</u></Heading>
-
-    
-        <Stack minH={'100vh'}  direction={{ base:'column', md: 'row' }}>
-
+        <Stack minH={'100vh'} backgroundColor={'#0f346c'} color={'white'} borderRadius={'10px'} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
-
                 <Stack spacing={4} w={'full'} maxW={'md'}>
-
-                    
+                    <Heading fontSize={'2xl'}>Register Admin Account</Heading>
+                    <br />
                     <FormControl id="name">
                         <FormLabel>Enter the Admin Name</FormLabel>
                         <Input value={name} type="text" onChange={(e) => setname(e.target.value)} />
@@ -142,7 +134,5 @@ export default function RegisterAdmin() {
                 />
             </Flex>
         </Stack>
-        </Box>
-        
     );
 }
