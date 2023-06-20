@@ -105,10 +105,11 @@ Signup/Signin both of the pages having form validations and smooth connect to ba
 Admin page is also have Signup/Signin sections with form validation, which was controlled by backend (user can not enter without having admin tokens), it is responsible for whole cntrole over the user side of the website. It consists of Dashboard, Products ,Sales data, Network, Manage stocks, Admin data and registration sections.
 
 Dashboard is responsible for providing all the datas of the website. 
-
 In a product section admin can see all the products of website according to its categories.
-
 In a sales data section admin can see the information about the sales of products.
+In Manage stocke section admin can update, delete and add any products to the website.
+In Admin data section all the information about the admins are present.
+In Register of admin section, admin can register any user account to give the access of Admin page
 
 ## Team member 2:- Vinay Kumar Hatwar
 
@@ -119,6 +120,49 @@ In a sales data section admin can see the information about the sales of product
 
 
 ## Some Glimpse of our Cloned Website
+# Landing Page
+![Screenshot (1369)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/0dcc2683-be74-42e5-a2b2-07621a588a18)
+# Registration Account Page
+![Screenshot (1379)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/6aa4f2e7-f98c-4fb8-8879-f61488cb9261)
+# Login Page
+# Products Section
+![Screenshot (1370)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/faffd885-d90e-4055-9f5a-3466a982b1a8)
+# Single Item Details Section
+![Screenshot (1371)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/9ebc61cc-0c16-414d-a18c-01d95523c109)
+
+# Planning Order Section
+![Screenshot (1372)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/90df775c-6f89-438e-84a6-88eae485c9cb)
+
+# Personal info Section
+![Screenshot (1373)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/6fbe163f-d208-4dc5-a7eb-e101e94ceb33)
+
+![Screenshot (1374)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/fbfd3d5d-ad2f-4a06-9e0a-d7c190bfe047)
+# Payment Confirmation Section
+![Screenshot (1375)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/1d127924-297f-4739-9ce0-36bc45944ac5)
+
+# Wine Rection
+![Screenshot (1377)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/1d9022c1-3d61-4f70-b517-3554eed7baef)
+# Gifts Rection
+![Screenshot (1378)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/8c2ac063-daad-49c9-b23b-8b381b36bafc)
+# Admin Login Root
+![Screenshot (1381)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/8780f202-222c-446b-b13c-f86a01a25501)
+# Admin Dashboard
+![Screenshot (1382)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/4ed824e7-7226-4917-bc48-2c586b8ff765)
+![Screenshot (1359)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/b7f50bbe-4253-4f96-bb8d-8547ba809d2f)
+
+# Admin Products Section
+![Screenshot (1383)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/d7ea888e-2ef4-422f-a8c0-9982a2916603)
+# Sales Data Section
+![Screenshot (1362)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/bb33461f-d68c-4cba-ba5c-3eabec7506d8)
+# Manage Stock Section
+![Screenshot (1384)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/b5baad7e-1ff3-4fea-b943-656e9aa541dd)
+![Screenshot (1385)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/273f6b59-1018-4cc9-b150-5321a6c49bef)
+![Screenshot (1386)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/bd38cccf-1853-4031-b1c9-81addfdba129)
+# Admin Data Section
+![Screenshot (1388)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/a323f8aa-9044-40df-8dfe-b05cbb445595)
+![Screenshot (1389)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/b9090518-674a-4f15-8544-676fbd2de5f7)
+# Admin Account Registration section
+![Screenshot (1390)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/0fdecd5f-0426-4adc-8e97-098733c24e16)
 
 
-
+# Thank you
