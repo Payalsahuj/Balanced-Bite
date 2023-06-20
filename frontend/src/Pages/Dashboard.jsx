@@ -81,8 +81,6 @@ import Scatterchart from '../Components/Scatterchart';
 
 
 
-
-
 const LinkItems = [
   { name: 'Dashboard', icon: FiHome, link: "/admin/dashboard" },
   { name: 'Products', icon: BsFillBoxSeamFill, link: "/admin/productsdata" },

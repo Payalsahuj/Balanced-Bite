@@ -101,14 +101,6 @@ export function Adminlogin(){
 
 
 
-
-
-
-
-
-
-
-
     return (<>
             <Button bg='#1a227e6d' color={'white'} size='md' padding={'0px 20px'} borderRadius={'0px'} _hover={{bg:'#1a227e'}} onClick={onOpen}>~Admin</Button>
             <Modal isOpen={isOpen}   onClose={onClose}>
