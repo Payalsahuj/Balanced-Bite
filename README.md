@@ -125,6 +125,8 @@ In Register of admin section, admin can register any user account to give the ac
 # Registration Account Page
 ![Screenshot (1379)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/6aa4f2e7-f98c-4fb8-8879-f61488cb9261)
 # Login Page
+![Screenshot (1380)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/86bed340-7207-484e-b76c-f4da5b7da436)
+
 # Products Section
 ![Screenshot (1370)](https://github.com/Payalsahuj/overwrought-skin-2796/assets/115584065/faffd885-d90e-4055-9f5a-3466a982b1a8)
 # Single Item Details Section
