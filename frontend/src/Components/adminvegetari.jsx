@@ -43,7 +43,7 @@ function Adminvegi() {
         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Vegetarian products</Heading>
 
       <SimpleGrid columns={[1, 2, 3, 4]} spacing={5} data-aos="zoom-in">
-        {veg.map((el) => (
+        {veg?.map((el) => (
             <Flex>
               <Box
                 textAlign={"left"}

@@ -112,7 +112,7 @@ export default function AdminAllDetails() {
         style={{display:'grid'}}
            gridTemplateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(3,1fr)' }}
           spacing={{ base: 10, md: 4, lg: 10 }}>
-          {data.map((ele)=><Testimonial key={ele._id}>
+          {data?.map((ele)=><Testimonial key={ele._id}>
             <TestimonialContent>
               <TestimonialHeading>{ele.name}</TestimonialHeading>
               <TestimonialText>

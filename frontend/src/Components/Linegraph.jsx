@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Chart } from "react-google-charts";
 
 export const data = [
@@ -27,6 +27,7 @@ export const options = {
 
 
 export function Linechart() {
+  
   return (
     <Chart
       chartType="LineChart"

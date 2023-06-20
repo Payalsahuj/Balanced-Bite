@@ -74,8 +74,11 @@ import AdminAllDetails from '../Components/adminAlldetails';
 
 import RegisterAdmin from '../Components/Registeradmin';
 import { Salsedata } from '../Components/salesdata';
-import { AdminNetwork } from '../Components/Network';
+
 import LoadingBlack from './Loadingblack';
+import Networkad from '../Components/Network';
+import Scatterchart from '../Components/Scatterchart';
+
 
 
 
@@ -172,7 +175,7 @@ export default function Dashboard({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-      <Box paddingLeft={'19%'} paddingRight={'4%'}>
+      <Box paddingLeft={{base:'5%',sm:'5%',md:'33%',lg:'23%'}} paddingRight={'5%'}>
         {place === "productsdata" ?
           <Box>{store.isLoading?<LoadingBlack/>:<Box>
             <Adminsig />
@@ -188,7 +191,10 @@ export default function Dashboard({ children }) {
             </Box> :
             place === "network" ?
               <Box>
-                <AdminNetwork/>
+                <Networkad/>
+                <br/>
+               <Scatterchart/>
+
                 <br/>
                 <Salsedata/>
                 </Box> :
@@ -196,7 +202,6 @@ export default function Dashboard({ children }) {
                 <Box><RegisterAdmin/></Box> :
                 place === "handlestocks" ?
                   <Box>
-                    < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Manage Stockes</Heading>
                     
                     <Adminallproduct />
                   </Box> :
@@ -222,7 +227,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><VscGraph size="24" /></Box>
+                              <Box><VscGraph size="24" /></Box>
                               <Box ml={3} mt={1} >TOTAL STOCKS</Box>
                             </Box>
                             <Box>
@@ -231,7 +236,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><TbTruckDelivery size="24" /></Box>
+                              <Box ><TbTruckDelivery size="24" /></Box>
                               <Box ml={3} mt={1} >ORDERS DETAIL</Box>
                             </Box>
                             <Box>
@@ -240,7 +245,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><MdCategory size="24" /></Box>
+                              <Box ><MdCategory size="24" /></Box>
                               <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
                             </Box>
                             <Box>
@@ -297,7 +302,7 @@ export default function Dashboard({ children }) {
                         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
 
                         <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                          <Linechart />
+                         <Linechart/>
                         </Box>
                         <br />
                         <br />
@@ -328,7 +333,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Reactlink to='/'><Image src={logo} ml={'-15%'} alt='Logo' /></Reactlink>
+        <Reactlink to='/'><Image src={logo} width={{base:'200px',sm:'200px',md:'auto',lg:'auto'}} ml={'-15%'} alt='Logo' /></Reactlink>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
