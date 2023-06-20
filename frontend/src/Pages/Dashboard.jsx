@@ -78,8 +78,6 @@ import { AdminNetwork } from '../Components/Network';
 import LoadingBlack from './Loadingblack';
 
 
-
-
 const LinkItems = [
   { name: 'Dashboard', icon: FiHome, link: "/admin/dashboard" },
   { name: 'Products', icon: BsFillBoxSeamFill, link: "/admin/productsdata" },
