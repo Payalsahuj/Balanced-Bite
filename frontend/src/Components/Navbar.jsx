@@ -110,7 +110,7 @@ export default function Navbar() {
           spacing={6}>
             <Reactlink to='/login'>
           <Button
-            as={'a'}
+            
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
@@ -119,7 +119,7 @@ export default function Navbar() {
           </Button></Reactlink>
           <Reactlink to='/register'>
           <Button
-            as={'a'}
+            
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
@@ -154,7 +154,7 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Reactlink to={navItem.href}>
-              <Link
+              <Text
                 p={2}
                
                 fontSize={'sm'}
@@ -165,7 +165,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }} >
                 {navItem.label}
-              </Link>
+              </Text>
               </Reactlink>
             </PopoverTrigger>
 
@@ -194,7 +194,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <Reactlink to={href}>
-    <Link
+    <Box
      
       role={'group'}
       display={'block'}
@@ -222,7 +222,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Link>
+    </Box>
     </Reactlink>
   );
 };
@@ -249,7 +249,7 @@ const MobileNavItem = ({ label, children, href }) => {
       <Flex
       
         py={2}
-        as={Link}
+        
         
         justify={'space-between'}
         align={'center'}
@@ -325,8 +325,8 @@ const NAV_ITEMSMob = [
     href:"/products"
   },
   {
-    label: 'PLANS',
-    href:"#"
+    label: 'PRICING',
+    href:"/pricing"
   },
   {
     label: 'WINE',
@@ -334,14 +334,9 @@ const NAV_ITEMSMob = [
   },
   {
     label: 'GIFTS',
-    href: '#',
-  },
-  {
-      label: 'MARKET',
-      href: '#',
-    },
-    {
-      label: 'ADMIN',
-      href: '#',
-    }
+    href: '/gift',
+  },{
+    label:"SIGN UP",
+    href:'/register'
+  }
 ];
