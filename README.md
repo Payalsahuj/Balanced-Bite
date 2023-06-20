@@ -105,11 +105,17 @@ Signup/Signin both of the pages having form validations and smooth connect to ba
 Admin page is also have Signup/Signin sections with form validation, which was controlled by backend (user can not enter without having admin tokens), it is responsible for whole cntrole over the user side of the website. It consists of Dashboard, Products ,Sales data, Network, Manage stocks, Admin data and registration sections.
 
 Dashboard is responsible for providing all the datas of the website. 
+
 In a product section admin can see all the products of website according to its categories.
+
 In a sales data section admin can see the information about the sales of products.
+
 In Manage stocke section admin can update, delete and add any products to the website.
+
 In Admin data section all the information about the admins are present.
+
 In Register of admin section, admin can register any user account to give the access of Admin page
+
 
 ## Team member 2:- Vinay Kumar Hatwar
 
