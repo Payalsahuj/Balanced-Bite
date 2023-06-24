@@ -122,7 +122,17 @@ In Register of admin section, admin can register any user account to give the ac
 
 ## Team member 3:- Santosh Kumar Sen
 
-## Team member 4:- Hariom Verma
+## Team member 4:- Hariom Verma 
+He is responsible for making wine page and gift page. Other than this he build pages for collecting user's delivery address and payment details.
+In Wine Page : - All types of wines are available in our stock are being displayed over there and a user can buy them.
+In Gift Page : - A user can gift a meal to his/her belongings. The products available to us.
+
+In Other pages :-
+        Address : - This page is collecting data from the user where he wants his meal to be delivered.
+        Payment: - This page is collecting the data of users account details. From where the amount to be deducted.
+        Order Success: - Displaying UI for order to be successfully ordered.
+        
+
 
 
 ## Some Glimpse of our Cloned Website
