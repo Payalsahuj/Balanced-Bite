@@ -49,7 +49,7 @@ export default function Navbar() {
   return (
     <Box position='fixed' top='0%'  zIndex={3} width={'100%'}>
       <Flex
-        bg={useColorModeValue('#ffffffc5', 'gray.800')}
+        bg={{base:'white',sm:'#ffffffc5'}}
         color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
         py={{ base: 2 }}
@@ -72,7 +72,7 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Reactlink to='/'><Image src={logo} width={{base: '140px', md:'120px'}}  alt='Logo' /></Reactlink>
+          <Reactlink to='/'><Image src={logo} width={{base: '90px', md:'120px'}}  alt='Logo' /></Reactlink>
         
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>

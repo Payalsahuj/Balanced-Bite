@@ -11,6 +11,7 @@ import { Adminlogin } from "./AdminLogin"
 import Navbar from "../Components/Navbar"
 import Footer from "../Components/Footer"
 
+
 function Home() {
 
     let card = [
@@ -66,8 +67,8 @@ function Home() {
     return <Box>
         <Navbar/>
         <Box style={{ fontFamily: "Chronicle Deck", position: 'relative' }} >
-        <Box style={{ position: 'sticky', top: 0, zIndex: 1, opacity: '.9' }}  >
-            <video width={'100%'} opacity='.9' style={{ objectFit: 'cover', filter: 'brightness(70%)' }} src={video} autoPlay muted loop></video>
+        <Box mt={{base:'17%',sm:'0%'}} style={{ position: 'sticky', top: 0, zIndex: 1, opacity: '.9' }}  >
+            <video width={'100%'}  opacity='.9' style={{ objectFit: 'cover', filter: 'brightness(70%)' }} src={video} autoPlay muted loop></video>
             <Box zIndex={3} top={{ base: '37%', sm: '29%', md: '23%' }} left={'5%'} position={'absolute'} color={'white'} height={'200px'} textAlign={'left'} >
                 <Image src={cap} width={{ base: '40px', md: '90px', lg: '140px', xl: '170px' }} alt="" />
                 <Heading as='h3' size={{ base: 'xs', md: 'md', lg: 'xl' }} fontFamily="Chronicle Deck" >
@@ -209,6 +210,7 @@ function Home() {
         </Box>
 
     </Box>
+   
     <Footer/>
     </Box>
 }

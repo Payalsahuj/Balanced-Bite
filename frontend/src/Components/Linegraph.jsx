@@ -1,41 +1,61 @@
+import React from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-import { Chart } from "react-google-charts";
 
-export const data = [
-  ["x", "wellness","signature", "vegetarian"],
-  [0, 0, 0, 0],
-  [1, 10, 5, 7],
-  [2, 23, 15,12],
-  [3, 17, 9,7],
-  [4, 18, 10,7],
-  [5, 9, 5,9],
-  [6, 11, 3,15],
-  [7, 27, 19,18],
-];
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export const options = {
-  hAxis: {
-    title: "Time",
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Sales Data Line Chart',
+    },
   },
-  vAxis: {
-    title: "Popularity",
-  },
-  series: {
-    1: { curveType: "function" },
-  }
+  maintainAspectRatio: false, 
 };
 
+const labels = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-export function Linechart() {
-  
-  return (
-    <Chart
-      chartType="LineChart"
-      width="100%"
-      height="400px"
-      data={data}
-      options={options}
-      style={{borderRadius:'7px'}}
-    />
-  );
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [1,6,2,8,4,3,4],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Dataset 2',
+      data: [4,4,2,6,9,6,9],
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+};
+
+export const Linechart=()=> {
+  return <div  style={{height:"450px",padding:'10px 10px',backgroundColor:'white'}}><Line options={options} data={data} /></div>
 }

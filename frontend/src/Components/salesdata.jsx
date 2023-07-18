@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import axios from "axios"
 import { useState } from "react";
 import { Box, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import Networkad from "./Network";
 
 
  export function Salsedata(){
@@ -26,6 +27,8 @@ import { Box, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Th
     },[])
 
     return (<Box>
+      {/* <Networkad/>
+      <br/> */}
     <Box  boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
                           <TableContainer bg={'white'}>
                             <Table variant='striped' colorScheme='blue'>
