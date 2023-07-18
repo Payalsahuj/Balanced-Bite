@@ -190,7 +190,7 @@ export function Updateproductadmin() {
                     <Box>
                     </Box>
                 </Box>
-                <Box >
+                <Box style={{display:'flex',flexDirection:'row' }}>
                     {/* <Box w={'100%'} display={'flex'}  >
                         <Text><b>Add ingredient details <span style={{ color: 'green' }}>(Add ingredients details seperated by commas)</span></b></Text>
                     </Box>
@@ -198,11 +198,11 @@ export function Updateproductadmin() {
                         <Textarea name='details' backgroundColor={'#c1d6f3'} placeholder="Enter ingredients_details"></Textarea>
                     </Box> */}
                     <Box textAlign={'center'} mt='2%'>
-                        <Button w={'90%'} backgroundColor="green" p='0px 35px' color={'white'} _hover={{ bg: 'green' }} onClick={handlesubmit}>UPDATE THE ITEM </Button>
+                        <Button    backgroundColor={'#f9f9f9'} variant='outline' _hover={{backgroundColor:'green',color:'white'}}   p='0px 35px'  onClick={handlesubmit}>UPDATE THE ITEM </Button>
 
                     </Box>
-                    <Box textAlign={'center'} mt='2%'>
-                        <Button w={'80%'} backgroundColor="green" p='0px 35px' color={'white'} _hover={{ bg: 'green' }} onClick={onOpen}>DELETE THE ITEM </Button>
+                    <Box textAlign={'center'} mt='2%' pl={'5px'}>
+                        <Button backgroundColor={'#f9f9f9'} variant='outline' _hover={{backgroundColor:'red',color:'white'}}  p='0px 35px' color={'red'}  onClick={onOpen}>DELETE THE ITEM </Button>
 
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
@@ -218,7 +218,7 @@ export function Updateproductadmin() {
                                     {/* <Button colorScheme='blue' mr={3} onClick={onClose}>
                                         Close
                                     </Button> */}
-                                    <Button variant='ghost' backgroundColor='#BEE3F8' onClick={handledelete} >Delete</Button>
+                                    <Button variant='ghost' backgroundColor='#BEE3F8' color={'red'} onClick={handledelete} >Delete</Button>
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>

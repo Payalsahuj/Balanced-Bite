@@ -56,7 +56,7 @@ import { VscGraph } from "react-icons/vsc"
 import { FaUsers } from "react-icons/fa"
 import { TbTruckDelivery } from 'react-icons/tb'
 import { MdCategory,MdPersonAddAlt1 } from "react-icons/md"
-import { Linechart } from '../Components/Linegraph';
+
 import { Link as Reactlink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getallproducts, getallusersdata } from '../Redux/AdminReducer/action';
@@ -74,15 +74,18 @@ import AdminAllDetails from '../Components/adminAlldetails';
 
 import RegisterAdmin from '../Components/Registeradmin';
 import { Salsedata } from '../Components/salesdata';
-import { AdminNetwork } from '../Components/Network';
+
 import LoadingBlack from './Loadingblack';
+import Networkad from '../Components/Network';
+
+import {Linechart} from "../Components/Linegraph"
 
 
 const LinkItems = [
   { name: 'Dashboard', icon: FiHome, link: "/admin/dashboard" },
   { name: 'Products', icon: BsFillBoxSeamFill, link: "/admin/productsdata" },
   { name: 'Sales Data', icon: FiTrendingUp, link: "/admin/salesdata" },
-  { name: 'Network', icon: FiCompass, link: "/admin/network" },
+  // { name: 'Network', icon: FiCompass, link: "/admin/network" },
   { name: 'Manage stocks', icon: RiFolderSettingsFill, link: "/admin/handlestocks" },
   { name: 'Admin Data', icon: RiAdminFill, link: "/admin/admindata" },
   { name: 'Register Admin', icon: MdPersonAddAlt1, link: "/admin/registeradmin" },
@@ -170,7 +173,7 @@ export default function Dashboard({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
-      <Box paddingLeft={'19%'} paddingRight={'4%'}>
+      <Box paddingLeft={{base:'5%',sm:'5%',md:'33%',lg:'23%'}} paddingRight={'5%'}>
         {place === "productsdata" ?
           <Box>{store.isLoading?<LoadingBlack/>:<Box>
             <Adminsig />
@@ -184,17 +187,20 @@ export default function Dashboard({ children }) {
               <Salsedata/>
 
             </Box> :
-            place === "network" ?
-              <Box>
-                <AdminNetwork/>
-                <br/>
-                <Salsedata/>
-                </Box> :
+            // place === "network" ?
+            //   <Box>
+            //     <Networkad/>
+            //     <br/>
+            //    <Scatterchart/>
+
+            //     <br/>
+            //     <Salsedata/>
+            //     </Box> 
+            //     :
               place === "registeradmin" ?
                 <Box><RegisterAdmin/></Box> :
                 place === "handlestocks" ?
                   <Box>
-                    < Heading as='h2' fontSize={'29px'} mb={'9px'} textAlign={'left'}>Manage Stockes</Heading>
                     
                     <Adminallproduct />
                   </Box> :
@@ -209,7 +215,7 @@ export default function Dashboard({ children }) {
                       <Box >
 
                         <Grid templateColumns={{ base: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(4,1fr)' }} gap={12}>
-                          <Box data-aos="zoom-in" className='collect' >
+                          <Box data-aos="zoom-in" overflow={'hidden'} className='collect' >
                             <Box className='innercollect'>
                               <Box><FaUsers size="24" /></Box>
                               <Box ml={3} mt={1} >TOTAL CUSTOMERS</Box>
@@ -220,7 +226,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><VscGraph size="24" /></Box>
+                              <Box><VscGraph size="24" /></Box>
                               <Box ml={3} mt={1} >TOTAL STOCKS</Box>
                             </Box>
                             <Box>
@@ -229,7 +235,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><TbTruckDelivery size="24" /></Box>
+                              <Box ><TbTruckDelivery size="24" /></Box>
                               <Box ml={3} mt={1} >ORDERS DETAIL</Box>
                             </Box>
                             <Box>
@@ -238,7 +244,7 @@ export default function Dashboard({ children }) {
                           </Box>
                           <Box data-aos="zoom-in" className='collect' >
                             <Box className='innercollect'>
-                              <Box b><MdCategory size="24" /></Box>
+                              <Box ><MdCategory size="24" /></Box>
                               <Box ml={3} mt={1} >TOTAL CATEGORY</Box>
                             </Box>
                             <Box>
@@ -268,7 +274,7 @@ export default function Dashboard({ children }) {
                                 </Tr>
                               </Thead>
                               <Tbody>
-                                {store.product.map((ele, index) => <Tr key={index}>
+                                {store.product?.map((ele, index) => <Tr key={index}>
                                   <Td>{index + 1}</Td>
                                   <Td style={{ display: 'flex' }}><Image mr='10px' borderRadius={'50%'} src={ele.image} width={'7%'} h="100%" alt="" /> {ele.name}</Td>
                                   <Td>{ele.category}</Td>
@@ -295,14 +301,15 @@ export default function Dashboard({ children }) {
                         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Sales graph</Heading>
 
                         <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                          <Linechart />
+                        <Piechart />
+                      
                         </Box>
                         <br />
                         <br />
                         < Heading as='h5' fontSize={'18px'} mb={'9px'} textAlign={'left'}>Product Stocks Pie chart</Heading>
 
                         <Box boxShadow={'rgba(0, 0, 0, 0.16) 0px 1px 4px'} >
-                          <Piechart />
+                        <Linechart/>
                         </Box>
 
                       </Box>}
@@ -326,7 +333,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Reactlink to='/'><Image src={logo} ml={'-15%'} alt='Logo' /></Reactlink>
+        <Reactlink to='/'><Image src={logo} width={{base:'200px',sm:'200px',md:'auto',lg:'auto'}} ml={'-15%'} alt='Logo' /></Reactlink>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
