@@ -8,11 +8,7 @@ import { Box, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Th
     const [data,setdata]=useState([])
     function getdata(){
 
-        axios.get("https://frail-toad-sunglasses.cyclic.app/order",{
-            headers:{
-                Authorization:localStorage.getItem("token")
-            }
-        })
+        axios.get("https://frail-toad-sunglasses.cyclic.app/allorderadmin")
         .then((res)=>{
             console.log(res.data)
             setdata(res.data)
