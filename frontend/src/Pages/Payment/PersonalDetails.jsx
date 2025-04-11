@@ -43,7 +43,7 @@ const PersonalDetails = () => {
   const navigate = useNavigate();
 
 useEffect(()=>{
-   fetch('https://frail-toad-sunglasses.cyclic.app/order',{
+   fetch('https://balanced-bite.onrender.com/order',{
       method:"GET",
       headers: {
          "Content-Type": "application/json",
@@ -56,14 +56,14 @@ useEffect(()=>{
    .catch((err)=>console.log(err))
 },[])
 
-console.log("order in line 58",order,order._id)
+
 
 
 
    const handleSubmit = (e) => {
       e.preventDefault();
       setx(true);
-      fetch(`https://frail-toad-sunglasses.cyclic.app/order/update/${order?._id}`, {
+      fetch(`https://balanced-bite.onrender.com/order/update/${order?._id}`, {
          method: "PATCH",
          body: JSON.stringify({address:detail}),
          headers: {
@@ -87,7 +87,7 @@ console.log("order in line 58",order,order._id)
    };
 
    const handleCancel = (e) => {
-      fetch(`https://frail-toad-sunglasses.cyclic.app/order/deleteallorder`, {
+      fetch(`https://balanced-bite.onrender.com/order/deleteallorder`, {
          method: "DELETE",
 
          headers: {
