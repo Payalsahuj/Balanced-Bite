@@ -6,20 +6,20 @@ export const adminlogin=(data)=>(dispatch)=>{
    
     dispatch({type:LOADING})
 
-    return axios.post("https://frail-toad-sunglasses.cyclic.app/admin-auth/login",data)
+    return axios.post("https://balanced-bite.onrender.com/admin-auth/login",data)
     
 }
 
 export const getallusersdata=(dispatch)=>{
     dispatch({type:LOADING})
 
-    return axios.get("https://frail-toad-sunglasses.cyclic.app/users/allusers") 
+    return axios.get("https://balanced-bite.onrender.com/users/allusers") 
 }
 
 export const getallproducts=(dispatch)=>{
     dispatch({type:LOADING})
 
-    return axios.get("https://frail-toad-sunglasses.cyclic.app/adminproducts",{
+    return axios.get("https://balanced-bite.onrender.com/adminproducts",{
         headers:{
             Authorization: localStorage.getItem("admintoken")
         }
@@ -28,15 +28,15 @@ export const getallproducts=(dispatch)=>{
 
 export const addproduct=(data)=>(dispatch)=>{
     dispatch({type:LOADING})
-    return axios.post("https://frail-toad-sunglasses.cyclic.app/adminproducts/add",data)
+    return axios.post("https://balanced-bite.onrender.com/adminproducts/add",data)
 }
 
 export const updateproduct=(id,data)=>(dispatch)=>{
     dispatch({type:LOADING})
-    return axios.patch(`https://frail-toad-sunglasses.cyclic.app/adminproducts/update/${id}`,data)
+    return axios.patch(`https://balanced-bite.onrender.com/adminproducts/update/${id}`,data)
 }
 
 export const deleteproduct=(id)=>(dispatch)=>{
     dispatch({type:LOADING})
-    return axios.delete(`https://frail-toad-sunglasses.cyclic.app/adminproducts/delete/${id}`) 
+    return axios.delete(`https://balanced-bite.onrender.com/adminproducts/delete/${id}`) 
 }
