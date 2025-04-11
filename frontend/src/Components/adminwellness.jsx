@@ -9,7 +9,7 @@ export const Adminwellness=()=>{
 
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/product/wellness",{
+    fetch("https://balanced-bite.onrender.com/product/wellness",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"
