@@ -8,7 +8,7 @@ import { Box, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Th
     const [data,setdata]=useState([])
     function getdata(){
 
-        axios.get("https://frail-toad-sunglasses.cyclic.app/allorderadmin")
+        axios.get("https://balanced-bite.onrender.com/allorderadmin")
         .then((res)=>{
             console.log(res.data)
             setdata(res.data)
