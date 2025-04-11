@@ -27,7 +27,7 @@ function SingleProduct() {
 
   const getData = () => {
     fetch(
-      `https://frail-toad-sunglasses.cyclic.app/product/singleproduct/${params.id}`,
+      `https://balanced-bite.onrender.com/product/singleproduct/${params.id}`,
       {
         method: "GET",
         headers: {
@@ -50,7 +50,7 @@ function SingleProduct() {
   }, [params.id]);
 
   const handleAddtocart=()=>{
-    fetch(`https://frail-toad-sunglasses.cyclic.app/cart/add`,{
+    fetch(`https://balanced-bite.onrender.com/cart/add`,{
       method:"POST",
       body:JSON.stringify(sdata),
       headers:{
