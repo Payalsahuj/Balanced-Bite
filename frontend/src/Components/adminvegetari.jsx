@@ -16,7 +16,7 @@ function Adminvegi() {
     
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/product/vegetarian",{
+    fetch("https://balanced-bite.onrender.com/product/vegetarian",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"
