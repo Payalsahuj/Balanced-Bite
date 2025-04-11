@@ -73,7 +73,7 @@ function Pricing() {
    // };
 
    const getData = () => {
-      fetch("https://frail-toad-sunglasses.cyclic.app/cart", {
+      fetch("https://balanced-bite.onrender.com/cart", {
          method: "GET",
          headers: {
             "Content-Type": "application/json",
@@ -91,7 +91,7 @@ function Pricing() {
    };
 
    const handleDelete = () => {
-      fetch("https://frail-toad-sunglasses.cyclic.app/cart/deleteallcart", {
+      fetch("https://balanced-bite.onrender.com/cart/deleteallcart", {
          method: "DELETE",
          headers: {
             "Content-Type": "application/json",
@@ -143,7 +143,7 @@ function Pricing() {
       arrProduct.push(AddOrderObj);
       console.log("payload", payload);
 
-      fetch("https://frail-toad-sunglasses.cyclic.app/order/add", {
+      fetch("https://balanced-bite.onrender.com/order/add", {
          method: "POST",
          body: JSON.stringify(arrProduct),
          headers: {
@@ -159,7 +159,7 @@ function Pricing() {
             console.log(err);
          });
 
-      fetch("https://frail-toad-sunglasses.cyclic.app/cart/deleteallcart", {
+      fetch("https://balanced-bite.onrender.com/cart/deleteallcart", {
          method: "DELETE",
          headers: {
             "Content-Type": "application/json",
@@ -180,7 +180,7 @@ function Pricing() {
       navigate("/payment");
    };
 
-   console.log("prod", cartProduct);
+ 
 
    return (
       <Box backgroundColor={"#f8f9fa"}>
