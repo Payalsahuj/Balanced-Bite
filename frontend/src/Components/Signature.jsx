@@ -18,7 +18,7 @@ function Signature() {
   console.log("prod",product)
 
   const getData=()=>{
-    fetch("https://frail-toad-sunglasses.cyclic.app/product/signature",{
+    fetch("https://balanced-bite.onrender.com/product/signature",{
       method:"GET",
       headers:{
         "Content-Type":"application/json"
