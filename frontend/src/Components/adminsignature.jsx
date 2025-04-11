@@ -15,7 +15,7 @@ export const Adminsig=()=>{
     const [sig,setsig]=useState([])
     
     const getDatasig = () => {
-        fetch("https://frail-toad-sunglasses.cyclic.app/product/signature", {
+        fetch("https://balanced-bite.onrender.com/product/signature", {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
