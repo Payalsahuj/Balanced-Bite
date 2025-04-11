@@ -12,7 +12,7 @@ const Summary = () => {
 const [l,setL] = useState(false)
 
    useEffect(()=>{
-      fetch("https://frail-toad-sunglasses.cyclic.app/order", {
+      fetch("https://balanced-bite.onrender.com/order", {
          method: "GET",
          headers: {
            "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const [l,setL] = useState(false)
 
    // console.log('order in line 42',order)
    const handleCancel = (e) => {
-      fetch(`https://frail-toad-sunglasses.cyclic.app/payment/delete/${id}`, {
+      fetch(`https://balanced-bite.onrender.com/payment/delete/${id}`, {
          method: "DELETE",
      
          headers: {
