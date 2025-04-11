@@ -38,7 +38,7 @@ export default function RegisterAdmin() {
                 pass:password,
                 role:role
             }
-           axios.post("https://frail-toad-sunglasses.cyclic.app/admin-auth/register",obj).then((res)=>{
+           axios.post("https://balanced-bite.onrender.com/admin-auth/register",obj).then((res)=>{
             console.log(res)
             toast({
                 position: 'top-right',
